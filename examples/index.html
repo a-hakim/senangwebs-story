@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SenangWebs Story - HTML Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../src/css/sws.css" />
+    <style>
+      /* Override SWS styles to work with Tailwind */
+      [data-sws-subjects] img.active {
+        opacity: 1 !important;
+        transform: scale(1.05) !important;
+      }
+    </style>
+  </head>
+  <body
+    class="m-0 p-5 bg-slate-900 min-h-screen font-sans"
+  >
+    <div
+      class="max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden backdrop-blur-sm border-2 border-white"
+    >
+      <div
+        class="bg-gradient-to-br from-purple-300 via-purple-600 to-purple-800 text-white p-8 text-center relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"
+        ></div>
+        <div class="relative z-10">
+          <h1
+            class="m-0 text-4xl font-bold mb-2 bg-gradient-to-r from-white via-purple-100 to-amber-100 bg-clip-text text-transparent drop-shadow-lg"
+          >
+            The Magical Adventure
+          </h1>
+          <p class="mt-3 mb-0 opacity-90 text-purple-100 text-lg font-medium">
+            A SenangWebs Story Example - HTML/Declarative Approach
+          </p>
+        </div>
+      </div>
+
+      <!-- SenangWebs Story Container -->
+      <section data-sws data-sws-id="magical_adventure" class="relative">
+        <!-- Scene 1: The Forest -->
+        <div
+          data-sws-scene-1="true"
+          data-sws-scene-start="console.log('Welcome to the Magical Forest!')"
+          class="relative"
+        >
+          <div
+            data-sws-background
+            class="relative h-96 md:h-[600px] overflow-hidden"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
+              alt="Forest Background"
+              class="w-full h-full object-cover transition-all duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+            ></div>
+          </div>
+          <div
+            data-sws-subjects
+            class="absolute bottom-20 left-0 w-full h-3/4 z-10 flex justify-center items-end px-4"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&crop=face"
+              data-sws-subject-id="hero"
+              data-sws-subject-name="Alex the Adventurer"
+              alt="Hero"
+              class="max-h-full opacity-60 transition-all duration-300 ease-in-out mx-3 hover:opacity-100 hover:scale-105 rounded-lg shadow-lg border-2 border-white/20 aspect-[2/3]"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1644224010199-407a662c9228?w=200&h=300&fit=crop&crop=face"
+              data-sws-subject-id="sage"
+              data-sws-subject-name="Luna the Wise"
+              alt="Sage"
+              class="max-h-full opacity-60 transition-all duration-300 ease-in-out mx-3 hover:opacity-100 hover:scale-105 rounded-lg shadow-lg border-2 border-white/20 aspect-[2/3]"
+            />
+          </div>
+          <div
+            data-sws-dialog-box
+            class="absolute bottom-4 left-4 right-4 bg-slate-900/85 backdrop-blur-md text-white p-6 pb-12 rounded-2xl z-20 min-h-36 border border-emerald-400/40 shadow-xl"
+          >
+            <h4
+              data-sws-active-subject-name
+              class="m-0 mb-3 text-xl font-bold text-emerald-400 drop-shadow-md"
+            ></h4>
+            <div
+              data-sws-dialog-1
+              data-sws-subject="hero"
+              data-sws-dialog-start="console.log('Hero speaks!')"
+            >
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                Finally! I've reached the mystical forest that everyone talks
+                about. The legends say there's a wise sage living here who can
+                help me on my quest.
+              </p>
+            </div>
+            <div data-sws-dialog-2 data-sws-subject="sage">
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                Welcome, young traveler. I've been expecting you. The winds
+                whispered of your arrival. You seek the Crystal of Eternal
+                Light, don't you?
+              </p>
+            </div>
+            <div data-sws-dialog-3 data-sws-subject="hero">
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                How did you know? Yes, my village is in danger, and only the
+                Crystal can save it. Will you help me find it?
+              </p>
+            </div>
+            <div data-sws-dialog-4 data-sws-subject="sage">
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                The path is treacherous, but your heart is pure. I will give you
+                an ancient map, but beware - the Crystal is guarded by the
+                Shadow Dragon.
+              </p>
+            </div>
+            <div data-sws-dialog-5>
+              <p
+                class="m-0 text-base leading-relaxed italic text-emerald-200 font-medium"
+              >
+                The sage hands you a glowing scroll. As you touch it, visions of
+                a dark mountain flash before your eyes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scene 2: The Mountain Path -->
+        <div
+          data-sws-scene-2="true"
+          style="display: none"
+          data-sws-scene-start="console.log('Arriving at the dangerous mountain!')"
+          class="relative"
+        >
+          <div
+            data-sws-background
+            class="relative h-96 md:h-[500px] overflow-hidden"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+              alt="Mountain Background"
+              class="w-full h-full object-cover transition-all duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-red-900/20 to-transparent"
+            ></div>
+          </div>
+          <div
+            data-sws-subjects
+            class="absolute bottom-20 left-0 w-full h-3/4 z-10 flex justify-center items-end px-4"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&crop=face"
+              data-sws-subject-id="hero"
+              data-sws-subject-name="Alex the Adventurer"
+              alt="Hero"
+              class="max-h-full opacity-60 transition-all duration-300 ease-in-out mx-3 hover:opacity-100 hover:scale-105 rounded-lg shadow-lg border-2 border-white/20 aspect-[2/3]"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1610926597998-fc7f2c1b89b0?w=200&h=300&fit=crop"
+              data-sws-subject-id="dragon"
+              data-sws-subject-name="Shadow Dragon"
+              alt="Dragon"
+              class="max-h-full opacity-60 transition-all duration-300 ease-in-out mx-3 hover:opacity-100 hover:scale-105 rounded-lg shadow-lg border-2 border-red-400/30 aspect-[2/3]"
+            />
+          </div>
+          <div
+            data-sws-dialog-box
+            class="absolute bottom-4 left-4 right-4 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-2xl z-20 min-h-36 border border-red-400/40 shadow-xl"
+          >
+            <h4
+              data-sws-active-subject-name
+              class="m-0 mb-3 text-xl font-bold text-red-400 drop-shadow-md"
+            ></h4>
+            <div data-sws-dialog-1 data-sws-subject="hero">
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                The mountain is even more ominous than I imagined. Dark clouds
+                swirl around its peak, and I can feel an ancient power emanating
+                from within.
+              </p>
+            </div>
+            <div data-sws-dialog-2>
+              <p
+                class="m-0 text-base leading-relaxed italic text-orange-200 font-medium"
+              >
+                Suddenly, the ground trembles! A massive shadow passes overhead,
+                and with a thunderous roar, the Shadow Dragon descends!
+              </p>
+            </div>
+            <div
+              data-sws-dialog-3
+              data-sws-subject="dragon"
+              data-sws-dialog-start="console.log('The dragon appears!')"
+            >
+              <p
+                class="m-0 text-base leading-relaxed font-bold text-red-300 uppercase tracking-wide"
+              >
+                WHO DARES DISTURB MY SLUMBER? Mortal, you seek the Crystal that
+                has been mine for a thousand years!
+              </p>
+            </div>
+            <div data-sws-dialog-4 data-sws-subject="hero">
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                Great Dragon, I don't wish to fight you. My village is dying,
+                and only the Crystal's power can save them. Please, have mercy!
+              </p>
+            </div>
+            <div data-sws-dialog-5 data-sws-subject="dragon">
+              <p
+                class="m-0 text-base leading-relaxed text-red-300 font-semibold"
+              >
+                Hmm... Your heart speaks truth, young one. Very well. Prove your
+                worth with a riddle, and the Crystal shall be yours.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scene 3: The Resolution -->
+        <div
+          data-sws-scene-3="true"
+          style="display: none"
+          data-sws-scene-start="console.log('The final scene begins!')"
+          class="relative"
+        >
+          <div
+            data-sws-background
+            class="relative h-96 md:h-[500px] overflow-hidden"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop"
+              alt="Crystal Cave Background"
+              class="w-full h-full object-cover transition-all duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-blue-900/20 to-transparent"
+            ></div>
+          </div>
+          <div
+            data-sws-subjects
+            class="absolute bottom-20 left-0 w-full h-3/4 z-10 flex justify-center items-end px-4"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&crop=face"
+              data-sws-subject-id="hero"
+              data-sws-subject-name="Alex the Adventurer"
+              alt="Hero"
+              class="max-h-full opacity-60 transition-all duration-300 ease-in-out mx-3 hover:opacity-100 hover:scale-105 rounded-lg shadow-lg border-2 border-white/20 aspect-[2/3]"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1620062110593-4b3c37545aff?w=200&h=300&fit=crop"
+              data-sws-subject-id="dragon"
+              data-sws-subject-name="Shadow Dragon"
+              alt="Dragon"
+              class="max-h-full opacity-60 transition-all duration-300 ease-in-out mx-3 hover:opacity-100 hover:scale-105 rounded-lg shadow-lg border-2 border-blue-400/30 aspect-[2/3]"
+            />
+          </div>
+          <div
+            data-sws-dialog-box
+            class="absolute bottom-4 left-4 right-4 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-2xl z-20 min-h-36 border border-blue-400/40 shadow-xl"
+          >
+            <h4
+              data-sws-active-subject-name
+              class="m-0 mb-3 text-xl font-bold text-blue-400 drop-shadow-md"
+            ></h4>
+            <div data-sws-dialog-1 data-sws-subject="dragon">
+              <p
+                class="m-0 text-base leading-relaxed text-blue-200 font-medium"
+              >
+                Here is my riddle: "I am not seen, yet I give sight. I am not
+                heard, yet I bring understanding. What am I?"
+              </p>
+            </div>
+            <div data-sws-dialog-2 data-sws-subject="hero">
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                I think... the answer is 'Light'! Light itself cannot be seen,
+                but it allows us to see. And understanding comes from
+                enlightenment!
+              </p>
+            </div>
+            <div data-sws-dialog-3 data-sws-subject="dragon">
+              <p class="m-0 text-base leading-relaxed text-green-300 font-bold">
+                CORRECT! You have proven yourself worthy. Take the Crystal of
+                Eternal Light, and may it bring hope to your people.
+              </p>
+            </div>
+            <div data-sws-dialog-4>
+              <p
+                class="m-0 text-base leading-relaxed italic text-yellow-200 font-medium"
+              >
+                The dragon breathes upon a magnificent crystal, making it glow
+                with pure white light. You carefully take it, feeling its warm,
+                healing energy.
+              </p>
+            </div>
+            <div data-sws-dialog-5 data-sws-subject="hero">
+              <p class="m-0 text-base leading-relaxed text-gray-100">
+                Thank you, wise dragon. I will never forget your kindness. My
+                village will sing songs of your mercy for generations to come!
+              </p>
+            </div>
+            <div data-sws-dialog-6>
+              <p
+                class="m-0 text-base leading-relaxed italic text-amber-200 font-bold text-center"
+              >
+                And so, Alex returned home as a hero, the Crystal's light saving
+                the village and bringing prosperity for years to come. THE END.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Actions -->
+        <div data-sws-actions class="absolute bottom-3 right-3 z-30 flex gap-3">
+          <button
+            data-sws-button="back"
+            class="px-6 py-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-slate-500/50 backdrop-blur-sm"
+          >
+            ← Back
+          </button>
+          <button
+            data-sws-button="next"
+            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-blue-500/50 backdrop-blur-sm"
+          >
+            Next →
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Include the SenangWebs Story Library -->
+    <script src="../src/js/sws.js"></script>
+
+    <script>
+      // Additional custom interactions
+      console.log("🎭 SenangWebs Story Example Loaded!");
+      console.log(
+        "This story demonstrates the HTML-based declarative approach."
+      );
+      console.log(
+        "Navigate through the story using the Back and Next buttons."
+      );
+
+      // Add some visual enhancements
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add sparkle effect on crystal mentions
+        const dialogs = document.querySelectorAll("[data-sws-dialog-box] p");
+        dialogs.forEach((dialog) => {
+          if (dialog.textContent.includes("Crystal")) {
+            dialog.style.textShadow = "0 0 10px rgba(255, 215, 0, 0.5)";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "senangwebs-story",
+  "version": "1.0.0",
+  "description": "Lightweight, dependency-free JavaScript library for creating interactive, visual novel-style story experiences.",
+  "main": "dist/sws.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch"
+  },
+  "devDependencies": {
+    "css-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^2.0.0",
+    "style-loader": "^3.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0",
+    "babel-loader": "^9.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "quiz",
+    "utility"
+  ],
+  "author": "a-hakim",
+  "license": "MIT"
+}

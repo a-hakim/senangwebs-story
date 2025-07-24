@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenangWebs Story - JSON Example</title>
+    <link rel="stylesheet" href="../src/css/sws.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            text-align: center;
+        }
+        
+        .controls button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .controls button:hover {
+            background: #0056b3;
+        }
+        
+        .controls button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        #loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Space Adventure</h1>
+            <p>A SenangWebs Story Example - JSON/Programmatic Approach</p>
+        </div>
+        
+        <div class="controls">
+            <button onclick="loadStory1()">Load Story: The First Contact</button>
+            <button onclick="loadStory2()">Load Story: The Ancient Civilization</button>
+            <button onclick="clearStory()">Clear Story</button>
+        </div>
+        
+        <!-- This will be our story container -->
+        <div id="story-container">
+            <div id="loading">
+                <h3>👆 Choose a story to load using the buttons above</h3>
+                <p>This example demonstrates how to initialize SenangWebs Story using JSON data and JavaScript.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the SenangWebs Story Library -->
+    <script src="../src/js/sws.js"></script>
+    
+    <script>
+        let currentStoryInstance = null;
+
+        // Story 1: The First Contact
+        const story1Data = {
+            "id": "first_contact",
+            "scenes": [
+                {
+                    "sceneStart": "console.log('🛸 First Contact scenario begins!'); playSound('space-ambience')",
+                    "background": "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&h=600&fit=crop",
+                    "subjects": [
+                        { 
+                            "id": "captain", 
+                            "name": "Captain Sarah Chen", 
+                            "src": "https://images.unsplash.com/photo-1494790108755-2616c666aceb?w=200&h=300&fit=crop&crop=face" 
+                        },
+                        { 
+                            "id": "engineer", 
+                            "name": "Engineer Marcus", 
+                            "src": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=300&fit=crop&crop=face" 
+                        }
+                    ],
+                    "dialogs": [
+                        {
+                            "subjectId": "captain",
+                            "text": "Commander's log, stardate 2387.5. We've detected an unknown signal from the Proxima system. This could be the first evidence of extraterrestrial intelligence.",
+                            "dialogStart": "console.log('📝 Captain begins her log entry')"
+                        },
+                        {
+                            "subjectId": "engineer",
+                            "text": "Captain, I'm reading massive energy signatures from the third planet. The pattern... it's too organized to be natural.",
+                            "dialogStart": "highlightControls('energy-readings')"
+                        },
+                        {
+                            "subjectId": "captain",
+                            "text": "Set course for Proxima Centauri III. Red alert! All hands to stations. We're about to make history."
+                        },
+                        {
+                            "text": "The ship's engines roar to life as it changes course toward the mysterious planet, leaving a trail of light across the cosmos."
+                        }
+                    ]
+                },
+                {
+                    "sceneStart": "console.log('🌍 Approaching the alien planet!'); flashScreen('red')",
+                    "background": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=800&h=600&fit=crop",
+                    "subjects": [
+                        { 
+                            "id": "captain", 
+                            "name": "Captain Sarah Chen", 
+                            "src": "https://images.unsplash.com/photo-1494790108755-2616c666aceb?w=200&h=300&fit=crop&crop=face" 
+                        },
+                        { 
+                            "id": "alien", 
+                            "name": "Zyx'thara", 
+                            "src": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=300&fit=crop" 
+                        }
+                    ],
+                    "dialogs": [
+                        {
+                            "subjectId": "captain",
+                            "text": "My God... the cities are beautiful! Crystalline structures reaching into the clouds. How long have they been waiting for us?"
+                        },
+                        {
+                            "text": "Suddenly, a shimmering portal opens on the bridge. A being of pure energy materializes before the crew!"
+                        },
+                        {
+                            "subjectId": "alien",
+                            "text": "Greetings, travelers from the third planet of Sol. I am Zyx'thara. We have observed your species' growth and await peaceful contact.",
+                            "dialogStart": "console.log('👽 First alien contact established!')"
+                        },
+                        {
+                            "subjectId": "captain",
+                            "text": "This is incredible! I'm Captain Sarah Chen of the Earth vessel Endeavor. We come in peace, seeking knowledge and friendship."
+                        },
+                        {
+                            "subjectId": "alien",
+                            "text": "Your vessel may land in our capital. We have much to discuss about the future of both our species."
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // Story 2: The Ancient Civilization  
+        const story2Data = {
+            "id": "ancient_civilization",
+            "scenes": [
+                {
+                    "sceneStart": "console.log('🏛️ Discovering ancient ruins!'); changeBackgroundMusic('mystery')",
+                    "background": "https://images.unsplash.com/photo-1539650116574-75c0c6d73906?w=800&h=600&fit=crop",
+                    "subjects": [
+                        { 
+                            "id": "archaeologist", 
+                            "name": "Dr. Elena Rodriguez", 
+                            "src": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=300&fit=crop&crop=face" 
+                        },
+                        { 
+                            "id": "assistant", 
+                            "name": "Jake Williams", 
+                            "src": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=300&fit=crop&crop=face" 
+                        }
+                    ],
+                    "dialogs": [
+                        {
+                            "subjectId": "archaeologist",
+                            "text": "Jake, look at these hieroglyphs! They're unlike anything we've seen before. The craftsmanship suggests a civilization far more advanced than we initially thought."
+                        },
+                        {
+                            "subjectId": "assistant", 
+                            "text": "Dr. Rodriguez, this inscription... it seems to be some kind of warning. And look here - these symbols appear to be coordinates!"
+                        },
+                        {
+                            "subjectId": "archaeologist",
+                            "text": "Coordinates to what? Wait... hand me that translation device. If I'm reading this correctly, they're pointing to a hidden chamber beneath the temple."
+                        },
+                        {
+                            "text": "The ground begins to rumble as ancient mechanisms activate. A secret passage opens in the temple floor, revealing stairs descending into darkness."
+                        }
+                    ]
+                },
+                {
+                    "sceneStart": "console.log('🔍 Entering the hidden chamber!'); playSound('cave-echo')",
+                    "background": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop",
+                    "subjects": [
+                        { 
+                            "id": "archaeologist", 
+                            "name": "Dr. Elena Rodriguez", 
+                            "src": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=300&fit=crop&crop=face" 
+                        },
+                        { 
+                            "id": "guardian", 
+                            "name": "Ancient Guardian", 
+                            "src": "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=200&h=300&fit=crop" 
+                        }
+                    ],
+                    "dialogs": [
+                        {
+                            "subjectId": "archaeologist",
+                            "text": "The chamber is filled with artifacts that shouldn't exist! This technology is thousands of years ahead of its time."
+                        },
+                        {
+                            "text": "Suddenly, a holographic figure materializes from one of the ancient devices - a guardian left behind by the lost civilization!"
+                        },
+                        {
+                            "subjectId": "guardian",
+                            "text": "Seekers of knowledge, you have found the Archive of Eternity. I am the last guardian of my people's wisdom.",
+                            "dialogStart": "console.log('🤖 Ancient AI guardian activated!')"
+                        },
+                        {
+                            "subjectId": "archaeologist",
+                            "text": "Incredible! You're an artificial intelligence from the ancient world. What happened to your civilization?"
+                        },
+                        {
+                            "subjectId": "guardian",
+                            "text": "We transcended physical form eons ago, but left this archive for future seekers. The knowledge here will advance your species by millennia."
+                        },
+                        {
+                            "text": "The guardian extends a glowing data crystal, containing the accumulated wisdom of an entire civilization. History will never be the same."
+                        }
+                    ]
+                }
+            ]
+        };
+
+        function loadStory1() {
+            clearStory();
+            console.log('🎬 Loading Story 1: The First Contact');
+            
+            const container = document.getElementById('story-container');
+            container.innerHTML = '<div id="story-content"></div>';
+            
+            const storyElement = document.getElementById('story-content');
+            currentStoryInstance = new SWS(storyElement, story1Data);
+            
+            console.log('✅ Story 1 loaded successfully!');
+        }
+
+        function loadStory2() {
+            clearStory();
+            console.log('🎬 Loading Story 2: The Ancient Civilization');
+            
+            const container = document.getElementById('story-container');
+            container.innerHTML = '<div id="story-content"></div>';
+            
+            const storyElement = document.getElementById('story-content');
+            currentStoryInstance = new SWS(storyElement, story2Data);
+            
+            console.log('✅ Story 2 loaded successfully!');
+        }
+
+        function clearStory() {
+            console.log('🧹 Clearing current story...');
+            
+            currentStoryInstance = null;
+            
+            document.getElementById('story-container').innerHTML = `
+                <div id="loading">
+                    <h3>Story cleared!</h3>
+                    <p>Choose another story to load using the buttons above.</p>
+                </div>
+            `;
+        }
+
+        // Helper functions that could be called by story callbacks
+        function playSound(soundName) {
+            console.log(`🔊 Playing sound: ${soundName}`);
+            // In a real implementation, you would play actual sound files
+        }
+
+        function changeBackgroundMusic(musicName) {
+            console.log(`🎵 Changing background music to: ${musicName}`);
+            // In a real implementation, you would change background music
+        }
+
+        function highlightControls(controlName) {
+            console.log(`✨ Highlighting controls: ${controlName}`);
+            // In a real implementation, you might highlight UI elements
+        }
+
+        function flashScreen(color) {
+            console.log(`⚡ Flashing screen with color: ${color}`);
+            // In a real implementation, you might create a flash effect
+        }
+
+        // Initialize
+        console.log('🚀 SenangWebs Story JSON Example Loaded!');
+        console.log('This example demonstrates the programmatic JSON approach.');
+        console.log('Click the buttons above to dynamically load different stories.');
+    </script>
+</body>
+</html>
