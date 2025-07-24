@@ -23,8 +23,15 @@
     "url": ""
   },
   "keywords": [
-    "quiz",
-    "utility"
+    "visual-novel",
+    "story",
+    "interactive",
+    "javascript",
+    "dialogue",
+    "game",
+    "narrative",
+    "typewriter",
+    "vanilla-js"
   ],
   "author": "a-hakim",
   "license": "MIT"

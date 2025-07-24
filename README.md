@@ -1,6 +1,6 @@
 # SenangWebs Story (SWS)
 
-A lightweight, dependency-free JavaScript library for creating interactive, visual novel-style story experiences.
+A lightweight, dependency-free JavaScript library for creating interactive, visual novel-style story experiences with typewriter effects and character dialogue management.
 
 ## Features
 
@@ -16,6 +16,13 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
 - **Event Callbacks:** Execute custom JavaScript functions at the start of any scene or dialogue for enhanced interactivity.
 - **Automatic UI Generation:** When using JSON, the library creates the complete HTML structure for the story.
 - **Flexible Integration:** Works with your existing HTML structure and is easy to style with CSS.
+
+## Limitations
+
+- **Scene Limit:** Currently supports up to 9 scenes per story (data-sws-scene-1 through data-sws-scene-9).
+- **Dialog Limit:** Up to 9 dialogs per scene (data-sws-dialog-1 through data-sws-dialog-9).
+- **Single Story Instance:** Each page can have multiple story containers, but each operates independently.
+- **Sequential Navigation:** Stories follow a linear progression; no branching or choice-based storylines.
 
 ## Quick Start
 
@@ -46,6 +53,7 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
     
         <!-- Navigation -->
         <div data-sws-actions>
+            <button data-sws-button="back">Back</button>
             <button data-sws-button="next">Next</button>
         </div>
     </div>
@@ -107,7 +115,10 @@ Include the built files in your HTML:
     <!-- Your story HTML here -->
     <script src="path/to/dist/sws.js"></script>
 </body>
-</html>```
+</html>
+```
+
+**Development Note:** The main entry point is `dist/sws.min.js` for production use.
 
 ## Story Configuration (HTML)
 
@@ -240,8 +251,8 @@ myStory.back(); // Moves to the previous dialogue/scene
 ## Examples
 
 Check the `examples/` directory for complete implementations:
-- **`examples/declarative-html.html`** - A full story built using only HTML `data-*` attributes.
-- **`examples/programmatic-json.html`** - A story initialized from a JavaScript object.
+- **`examples/index.html`** - A full story built using HTML `data-*` attributes with Tailwind CSS styling.
+- **`examples/json.html`** - A story initialized from a JavaScript object with custom styling.
 
 ## Browser Support
 
@@ -249,6 +260,24 @@ Works in all modern browsers supporting:
 - ES6 Classes and Arrow Functions
 - Dataset API (`element.dataset`)
 - Modern DOM methods (`querySelector`, `addEventListener`)
+- Minimum recommended: Chrome 49+, Firefox 45+, Safari 10+, Edge 13+
+
+## Technical Notes
+
+- **File Structure:** The library outputs both development (`sws.js`) and production (`sws.min.js`) builds.
+- **CSS Framework Compatibility:** Works with frameworks like Tailwind CSS (see examples).
+- **Performance:** Optimized for smooth typewriter animations and responsive UI updates.
+- **Memory Management:** Automatically cleans up timeouts and event listeners.
+
+## Troubleshooting
+
+### Common Issues
+
+- **Story not initializing:** Ensure the `data-sws` attribute is present on the root container.
+- **Scenes not switching:** Check that scene numbering follows the pattern `data-sws-scene-1`, `data-sws-scene-2`, etc.
+- **Dialogs not appearing:** Verify dialog elements have the correct `data-sws-dialog-[n]` attributes and contain a `<p>` tag.
+- **Characters not highlighting:** Ensure `data-sws-subject-id` matches the `data-sws-subject` value in dialogs.
+- **Console errors:** Check browser developer tools for specific error messages and missing elements.
 
 ## License
 
