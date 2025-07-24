@@ -77,7 +77,7 @@ class SWS {
 
         this.config.scenes.forEach((sceneData, i) => {
             const sceneEl = document.createElement('div');
-            sceneEl.dataset[`swsScene${i + 1}`] = 'true';
+            sceneEl.setAttribute(`data-sws-scene-${i + 1}`, ''); // Use setAttribute for kebab-case
             if (sceneData.sceneStart) {
                 sceneEl.dataset.swsSceneStart = sceneData.sceneStart;
             }
@@ -97,6 +97,7 @@ class SWS {
             // Subjects
             const subjectsEl = document.createElement('div');
             subjectsEl.dataset.swsSubjects = '';
+            const subjects = [];
             sceneData.subjects.forEach(subjectData => {
                 const subjectImg = document.createElement('img');
                 subjectImg.src = subjectData.src;
@@ -104,6 +105,13 @@ class SWS {
                 subjectImg.dataset.swsSubjectName = subjectData.name;
                 subjectImg.alt = subjectData.name;
                 subjectsEl.appendChild(subjectImg);
+                
+                // Store subject data for scene object
+                subjects.push({
+                    id: subjectData.id,
+                    name: subjectData.name,
+                    element: subjectImg
+                });
             });
             sceneEl.appendChild(subjectsEl);
 
@@ -114,11 +122,13 @@ class SWS {
             activeSubjectNameEl.dataset.swsActiveSubjectName = '';
             dialogBoxEl.appendChild(activeSubjectNameEl);
 
+            const dialogs = [];
             sceneData.dialogs.forEach((dialogData, j) => {
                 const dialogEl = document.createElement('div');
-                dialogEl.dataset[`swsDialog${j + 1}`] = '';
-                if (dialogData.subject) {
-                    dialogEl.dataset.swsSubject = dialogData.subject;
+                dialogEl.dataset.swsDialog = j + 1; // This will create data-sws-dialog attribute
+                dialogEl.setAttribute(`data-sws-dialog-${j + 1}`, ''); // Explicitly set the kebab-case version
+                if (dialogData.subjectId) {
+                    dialogEl.dataset.swsSubject = dialogData.subjectId;
                 }
                 if (dialogData.dialogStart) {
                     dialogEl.dataset.swsDialogStart = dialogData.dialogStart;
@@ -127,10 +137,28 @@ class SWS {
                 p.innerHTML = dialogData.text;
                 dialogEl.appendChild(p);
                 dialogBoxEl.appendChild(dialogEl);
+                
+                // Store dialog data for scene object
+                dialogs.push({
+                    element: dialogEl,
+                    text: dialogData.text,
+                    subjectId: dialogData.subjectId || null,
+                    dialogStart: dialogData.dialogStart || null
+                });
             });
             sceneEl.appendChild(dialogBoxEl);
 
             this.element.appendChild(sceneEl);
+            
+            // Create scene object and add to scenes array
+            const scene = {
+                element: sceneEl,
+                sceneStart: sceneData.sceneStart || null,
+                background: sceneData.background,
+                subjects: subjects,
+                dialogs: dialogs
+            };
+            this.scenes.push(scene);
         });
 
         // Actions
@@ -145,9 +173,6 @@ class SWS {
         actionsEl.appendChild(backButton);
         actionsEl.appendChild(nextButton);
         this.element.appendChild(actionsEl);
-
-        // Repopulate scenes from generated HTML
-        this._initFromHTML();
     }
 
 
@@ -232,6 +257,18 @@ class SWS {
         }
 
         const scene = this.scenes[this.currentSceneIndex];
+        
+        // Add defensive check to prevent undefined errors
+        if (!scene || !scene.dialogs || this.currentDialogIndex >= scene.dialogs.length) {
+            console.error('Scene or dialog not found', {
+                sceneIndex: this.currentSceneIndex,
+                dialogIndex: this.currentDialogIndex,
+                totalScenes: this.scenes.length,
+                scene: scene
+            });
+            return;
+        }
+        
         const dialog = scene.dialogs[this.currentDialogIndex];
 
         // Update dialog visibility
@@ -255,6 +292,16 @@ class SWS {
             activeSubjectNameEl.textContent = '';
         }
 
+        // Add defensive check for activeDialogElement
+        if (!activeDialogElement) {
+            console.error('Active dialog element not found', {
+                sceneIndex: this.currentSceneIndex,
+                dialogIndex: this.currentDialogIndex,
+                selector: `[data-sws-dialog-${this.currentDialogIndex + 1}]`,
+                sceneElement: scene.element
+            });
+            return;
+        }
 
         // Start typewriter effect
         this._typewriter(dialog.text, activeDialogElement.querySelector('p'));
