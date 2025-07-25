@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SenangWebs Story - HTML Example</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../src/css/sws.css" />
+    <link rel="stylesheet" href="../dist/sws.css" />
     <style>
       /* Override SWS styles to work with Tailwind */
       [data-sws-subjects] img.active {
@@ -33,13 +33,14 @@
             The Magical Adventure
           </h1>
           <p class="mt-3 mb-0 opacity-90 text-purple-100 text-lg font-medium">
-            A SenangWebs Story Example - HTML/Declarative Approach
+            A SenangWebs Story Example - HTML/Declarative Approach<br>
+            <span class="text-sm text-purple-200">✨ Features custom dialog speed (40ms) - try clicking Next while text is typing!</span>
           </p>
         </div>
       </div>
 
       <!-- SenangWebs Story Container -->
-      <section data-sws data-sws-id="magical_adventure" class="relative">
+      <section data-sws data-sws-id="magical_adventure" data-sws-dialog-speed="40" class="relative">
         <!-- Scene 1: The Forest -->
         <div
           data-sws-scene-1="true"
@@ -332,7 +333,7 @@
     </div>
 
     <!-- Include the SenangWebs Story Library -->
-    <script src="../src/js/sws.js"></script>
+    <script src="../dist/sws.js"></script>
 
     <script>
       // Additional custom interactions

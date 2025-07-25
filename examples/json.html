@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SenangWebs Story - JSON Example</title>
-    <link rel="stylesheet" href="../src/css/sws.css">
+    <link rel="stylesheet" href="../dist/sws.css">
     <style>
         body {
             margin: 0;
@@ -83,6 +83,7 @@
         <div class="controls">
             <button onclick="loadStory1()">Load Story: The First Contact</button>
             <button onclick="loadStory2()">Load Story: The Ancient Civilization</button>
+            <button onclick="loadDialogSpeedDemo()">Load Dialog Speed Demo</button>
             <button onclick="clearStory()">Clear Story</button>
         </div>
         
@@ -96,7 +97,7 @@
     </div>
 
     <!-- Include the SenangWebs Story Library -->
-    <script src="../src/js/sws.js"></script>
+    <script src="../dist/sws.js"></script>
     
     <script>
         let currentStoryInstance = null;
@@ -262,6 +263,76 @@
             ]
         };
 
+        // Story 3: Dialog Speed Demo
+        const dialogSpeedDemoData = {
+            "id": "dialog_speed_demo",
+            "dialogSpeed": 15, // Fast dialog speed for demonstration
+            "scenes": [
+                {
+                    "sceneStart": "console.log('⚡ Dialog Speed Demo begins!'); playSound('demo-start')",
+                    "background": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop",
+                    "subjects": [
+                        { 
+                            "id": "developer", 
+                            "name": "SWS Developer", 
+                            "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&crop=face" 
+                        },
+                        { 
+                            "id": "user", 
+                            "name": "Story User", 
+                            "src": "https://images.unsplash.com/photo-1494790108755-2616c666aceb?w=200&h=300&fit=crop&crop=face" 
+                        }
+                    ],
+                    "dialogs": [
+                        {
+                            "subjectId": "developer",
+                            "text": "Welcome to the Dialog Speed Demo! This story is configured with a fast dialog speed of 15ms per character. Notice how quickly the text appears!",
+                            "dialogStart": "console.log('🎯 Demonstrating fast dialog speed')"
+                        },
+                        {
+                            "subjectId": "user",
+                            "text": "Wow, that was really fast! Now try clicking Next while this dialog is still typing to test the new behavior - it should complete the current dialog instead of skipping."
+                        },
+                        {
+                            "subjectId": "developer",
+                            "text": "Perfect! That's the new feature in action. When a dialog is still animating and you click Next, it completes the current dialog first, ensuring you don't miss any content."
+                        },
+                        {
+                            "subjectId": "user",
+                            "text": "This is so much better for user experience! No more accidentally skipping dialogs while they're still typing. The fast speed of 15ms makes testing really easy too."
+                        },
+                        {
+                            "text": "The dialog speed can be set globally in JSON config using 'dialogSpeed' property, or per-story using the 'data-sws-dialog-speed' HTML attribute. Both approaches work seamlessly!"
+                        }
+                    ]
+                },
+                {
+                    "sceneStart": "console.log('🐌 Switching to slow speed demo!'); changeBackgroundMusic('slow-demo')",
+                    "background": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+                    "subjects": [
+                        { 
+                            "id": "developer", 
+                            "name": "SWS Developer", 
+                            "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&crop=face" 
+                        }
+                    ],
+                    "dialogs": [
+                        {
+                            "subjectId": "developer",
+                            "text": "Now let's imagine this scene had a much slower dialog speed - like 100ms per character. You'd have plenty of time to test the Next button behavior!"
+                        },
+                        {
+                            "subjectId": "developer", 
+                            "text": "The beauty of this feature is that it maintains backward compatibility. Existing stories without dialog speed settings continue to use the default 50ms timing."
+                        },
+                        {
+                            "text": "Whether you prefer fast-paced storytelling or slower, more deliberate pacing, SenangWebs Story now gives you complete control over the dialog animation speed!"
+                        }
+                    ]
+                }
+            ]
+        };
+
         function loadStory1() {
             clearStory();
             console.log('🎬 Loading Story 1: The First Contact');
@@ -286,6 +357,20 @@
             currentStoryInstance = new SWS(storyElement, story2Data);
             
             console.log('✅ Story 2 loaded successfully!');
+        }
+
+        function loadDialogSpeedDemo() {
+            clearStory();
+            console.log('⚡ Loading Dialog Speed Demo');
+            
+            const container = document.getElementById('story-container');
+            container.innerHTML = '<div id="story-content"></div>';
+            
+            const storyElement = document.getElementById('story-content');
+            currentStoryInstance = new SWS(storyElement, dialogSpeedDemoData);
+            
+            console.log('✅ Dialog Speed Demo loaded successfully!');
+            console.log('🎯 Dialog speed set to 15ms - try clicking Next while dialogs are typing!');
         }
 
         function clearStory() {

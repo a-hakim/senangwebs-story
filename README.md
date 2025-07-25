@@ -11,8 +11,9 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
   - Change background images with each new scene.
   - Display and highlight character images ("subjects").
   - Automatically toggles an `active` class on the current speaker.
-- **Typewriter Effect:** Dialogue text is rendered with a classic character-by-character animation.
-- **Simple Navigation:** Built-in "next" and "back" navigation through the entire story flow.
+- **Typewriter Effect:** Dialogue text is rendered with a classic character-by-character animation with customizable speed.
+- **Smart Navigation:** Built-in "next" and "back" navigation with intelligent dialog completion - clicking "next" while text is typing completes the current dialog instead of skipping.
+- **Customizable Dialog Speed:** Set typing animation speed using `data-sws-dialog-speed` attribute (HTML) or `dialogSpeed` property (JSON).
 - **Event Callbacks:** Execute custom JavaScript functions at the start of any scene or dialogue for enhanced interactivity.
 - **Automatic UI Generation:** When using JSON, the library creates the complete HTML structure for the story.
 - **Flexible Integration:** Works with your existing HTML structure and is easy to style with CSS.
@@ -34,7 +35,7 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
 
 2.  **Create a minimal story:**
     ```html
-    <div data-sws>
+    <div data-sws data-sws-dialog-speed="30">
         <!-- Scene 1 -->
         <div data-sws-scene-1>
             <div data-sws-background>
@@ -128,6 +129,7 @@ Configure your story using `data-*` attributes.
 |-----------|-------------|
 | `data-sws` | **Required.** Marks the root container for a story. |
 | `data-sws-id` | An optional unique identifier for the story instance. |
+| `data-sws-dialog-speed` | Sets the typewriter animation speed in milliseconds (default: 50). Lower values = faster typing. |
 | `data-sws-scene-[n]` | Defines a scene, where `[n]` is a 1-based index (e.g., `data-sws-scene-1`). |
 | `data-sws-scene-start` | A string of JavaScript to execute when the scene begins. |
 | `data-sws-background` | A container within a scene for the background `<img>`. |
@@ -151,7 +153,62 @@ A story is a collection of **scenes**. Each scene has its own background, set of
 Subjects are the characters in your story. You define them with an `<img>` tag and give them a `data-sws-subject-id`. To make a character speak, you link their `id` to a dialogue using the `data-sws-subject` attribute. The library will automatically apply an `active` class to the current speaker.
 
 ### Typewriter Effect
-To create an immersive experience, all dialogue text is animated with a character-by-character "typewriter" effect. Clicking "next" or "back" while the animation is running will instantly complete the text before moving on.
+To create an immersive experience, all dialogue text is animated with a character-by-character "typewriter" effect. The animation speed can be customized:
+
+- **HTML Approach:** Use `data-sws-dialog-speed="30"` on the story container (speed in milliseconds per character)
+- **JSON Approach:** Set `"dialogSpeed": 30` in the story configuration object
+- **Default Speed:** 50ms per character if no speed is specified
+
+**Smart Navigation:** Clicking "next" or "back" while the typewriter animation is running will instantly complete the current dialog text before proceeding. This ensures users never accidentally skip dialog content while it's still typing.
+
+## Dialog Speed Customization
+
+The typewriter animation speed can be customized to match your story's pacing needs:
+
+### HTML/Declarative Approach
+```html
+<!-- Fast dialog speed (20ms per character) -->
+<div data-sws data-sws-dialog-speed="20">
+    <!-- Your story content -->
+</div>
+
+<!-- Slow dialog speed (100ms per character) -->
+<div data-sws data-sws-dialog-speed="100">
+    <!-- Your story content -->
+</div>
+
+<!-- Default speed (50ms per character) - no attribute needed -->
+<div data-sws>
+    <!-- Your story content -->
+</div>
+```
+
+### JSON/Programmatic Approach
+```javascript
+const fastStory = {
+    "id": "fast_story",
+    "dialogSpeed": 20, // Fast: 20ms per character
+    "scenes": [/* ... */]
+};
+
+const slowStory = {
+    "id": "slow_story", 
+    "dialogSpeed": 100, // Slow: 100ms per character
+    "scenes": [/* ... */]
+};
+
+// Create instances with different speeds
+new SWS(container1, fastStory);
+new SWS(container2, slowStory);
+```
+
+### Speed Guidelines
+- **Very Fast:** 10-20ms - Good for action sequences or when users want to read quickly
+- **Normal:** 30-50ms - Balanced speed for most stories (default: 50ms)
+- **Slow:** 60-100ms - Dramatic effect, good for emphasizing important dialogue
+- **Very Slow:** 100ms+ - Special dramatic moments or accessibility needs
+
+**Note:** Lower values mean faster typing. The value represents milliseconds between each character appearing.
 
 ## JavaScript API
 
@@ -166,6 +223,7 @@ const storyContainer = document.getElementById('my-story');
 // Define the story using a JSON structure
 const storyData = {
   "id": "my_json_story",
+  "dialogSpeed": 25, // Custom dialog speed: 25ms per character
   "scenes": [
     {
       "sceneStart": "alert('Chapter 1 Begins!')",
@@ -174,7 +232,7 @@ const storyData = {
         { "id": "hero", "name": "Hero", "src": "path/to/hero.png" }
       ],
       "dialogs": [
-        { "subject": "hero", "text": "This story was created entirely from a JavaScript object." },
+        { "subjectId": "hero", "text": "This story was created entirely from a JavaScript object." },
         { "text": "This line is narrative text, with no active speaker." }
       ]
     },
@@ -185,8 +243,8 @@ const storyData = {
         { "id": "villain", "name": "Villain", "src": "path/to/villain.png" }
       ],
       "dialogs": [
-        { "subject": "villain", "dialogStart": "console.log('The villain appears!')", "text": "You've finally arrived!" },
-        { "subject": "hero", "text": "It's over, Villain!" }
+        { "subjectId": "villain", "dialogStart": "console.log('The villain appears!')", "text": "You've finally arrived!" },
+        { "subjectId": "hero", "text": "It's over, Villain!" }
       ]
     }
   ]
@@ -251,8 +309,8 @@ myStory.back(); // Moves to the previous dialogue/scene
 ## Examples
 
 Check the `examples/` directory for complete implementations:
-- **`examples/index.html`** - A full story built using HTML `data-*` attributes with Tailwind CSS styling.
-- **`examples/json.html`** - A story initialized from a JavaScript object with custom styling.
+- **`examples/index.html`** - A full story built using HTML `data-*` attributes with Tailwind CSS styling and custom dialog speed.
+- **`examples/json.html`** - Stories initialized from JavaScript objects with custom styling and dialog speed demonstration.
 
 ## Browser Support
 
@@ -277,6 +335,8 @@ Works in all modern browsers supporting:
 - **Scenes not switching:** Check that scene numbering follows the pattern `data-sws-scene-1`, `data-sws-scene-2`, etc.
 - **Dialogs not appearing:** Verify dialog elements have the correct `data-sws-dialog-[n]` attributes and contain a `<p>` tag.
 - **Characters not highlighting:** Ensure `data-sws-subject-id` matches the `data-sws-subject` value in dialogs.
+- **Dialog speed not working:** Check that `data-sws-dialog-speed` contains a valid positive number, or `dialogSpeed` in JSON config is a number.
+- **Next button skipping dialogs:** This behavior has been improved - clicking Next now completes the current dialog instead of skipping when typing is in progress.
 - **Console errors:** Check browser developer tools for specific error messages and missing elements.
 
 ## License

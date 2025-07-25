@@ -11,6 +11,8 @@ class SWS {
         this.currentSceneIndex = 0;
         this.currentDialogIndex = 0;
         this.typewriterTimeout = null;
+        this.isTypewriterRunning = false;
+        this.dialogSpeed = 50; // Default speed in milliseconds
 
         if (this.config) {
             this._initFromJSON();
@@ -33,6 +35,15 @@ class SWS {
      */
     _initFromHTML() {
         this.storyId = this.element.dataset.swsId;
+        
+        // Parse dialog speed if provided
+        if (this.element.dataset.swsDialogSpeed) {
+            const speed = parseInt(this.element.dataset.swsDialogSpeed, 10);
+            if (!isNaN(speed) && speed > 0) {
+                this.dialogSpeed = speed;
+            }
+        }
+        
         const sceneElements = Array.from(this.element.querySelectorAll('[data-sws-scene-1], [data-sws-scene-2], [data-sws-scene-3], [data-sws-scene-4], [data-sws-scene-5], [data-sws-scene-6], [data-sws-scene-7], [data-sws-scene-8], [data-sws-scene-9]'));
 
         sceneElements.forEach((sceneEl, i) => {
@@ -71,6 +82,15 @@ class SWS {
      */
     _initFromJSON() {
         this.storyId = this.config.id;
+        
+        // Parse dialog speed if provided in config
+        if (this.config.dialogSpeed) {
+            const speed = parseInt(this.config.dialogSpeed, 10);
+            if (!isNaN(speed) && speed > 0) {
+                this.dialogSpeed = speed;
+            }
+        }
+        
         this.element.dataset.sws = true;
         this.element.dataset.swsId = this.storyId;
         this.element.innerHTML = ''; // Clear existing content
@@ -211,7 +231,12 @@ class SWS {
      * Moves to the next dialog or scene.
      */
     next() {
-        this._completeTypewriter();
+        // If typewriter is running, complete it instead of moving to next dialog
+        if (this.isTypewriterRunning) {
+            this._completeTypewriter();
+            return;
+        }
+        
         const currentScene = this.scenes[this.currentSceneIndex];
 
         if (this.currentDialogIndex < currentScene.dialogs.length - 1) {
@@ -321,14 +346,17 @@ class SWS {
         if (!element) return;
         element.parentElement.style.display = '';
         element.textContent = '';
+        this.isTypewriterRunning = true;
         let i = 0;
-        const speed = 50; // milliseconds
 
         const type = () => {
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
-                this.typewriterTimeout = setTimeout(type, speed);
+                this.typewriterTimeout = setTimeout(type, this.dialogSpeed);
+            } else {
+                // Typewriter animation completed
+                this.isTypewriterRunning = false;
             }
         };
         type();
@@ -342,6 +370,7 @@ class SWS {
         if (this.typewriterTimeout) {
             clearTimeout(this.typewriterTimeout);
             this.typewriterTimeout = null;
+            this.isTypewriterRunning = false;
             const scene = this.scenes[this.currentSceneIndex];
             const dialog = scene.dialogs[this.currentDialogIndex];
             const dialogElement = scene.element.querySelector(`[data-sws-dialog-${this.currentDialogIndex + 1}]`);
