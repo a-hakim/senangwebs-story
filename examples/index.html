@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SenangWebs Story - HTML Example</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../dist/sws.css" />
     <style>
       /* Override SWS styles to work with Tailwind */
       [data-sws-subjects] img.active {
@@ -15,10 +14,10 @@
     </style>
   </head>
   <body
-    class="m-0 p-5 bg-slate-900 min-h-screen font-sans"
+    class="m-0 p-4 flex items-center justify-center bg-slate-900 min-h-screen font-sans"
   >
     <div
-      class="max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden backdrop-blur-sm border-2 border-white"
+      class="max-w-5xl mx-auto bg-white overflow-hidden shadow-xl shadow-white/20"
     >
       <div
         class="bg-gradient-to-br from-purple-300 via-purple-600 to-purple-800 text-white p-8 text-center relative overflow-hidden"
@@ -34,7 +33,6 @@
           </h1>
           <p class="mt-3 mb-0 opacity-90 text-purple-100 text-lg font-medium">
             A SenangWebs Story Example - HTML/Declarative Approach<br>
-            <span class="text-sm text-purple-200">✨ Features custom dialog speed (40ms) - try clicking Next while text is typing!</span>
           </p>
         </div>
       </div>
@@ -49,7 +47,7 @@
         >
           <div
             data-sws-background
-            class="relative h-96 md:h-[600px] overflow-hidden"
+            class="relative h-96 md:min-h-[600px] overflow-hidden"
           >
             <img
               src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
@@ -81,7 +79,7 @@
           </div>
           <div
             data-sws-dialog-box
-            class="absolute bottom-4 left-4 right-4 bg-slate-900/85 backdrop-blur-md text-white p-6 pb-12 rounded-2xl z-20 min-h-36 border border-emerald-400/40 shadow-xl"
+            class="absolute bottom-8 left-8 right-8 bg-slate-900/85 backdrop-blur-md text-white p-6 pb-12 rounded-xl z-20 min-h-36 border-2 border-emerald-400/40 shadow-xl"
           >
             <h4
               data-sws-active-subject-name
@@ -138,7 +136,7 @@
         >
           <div
             data-sws-background
-            class="relative h-96 md:h-[500px] overflow-hidden"
+            class="relative h-96 md:h-[600px] overflow-hidden"
           >
             <img
               src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
@@ -170,7 +168,7 @@
           </div>
           <div
             data-sws-dialog-box
-            class="absolute bottom-4 left-4 right-4 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-2xl z-20 min-h-36 border border-red-400/40 shadow-xl"
+            class="absolute bottom-8 left-8 right-8 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-xl z-20 min-h-36 border-2 border-red-400/40 shadow-xl"
           >
             <h4
               data-sws-active-subject-name
@@ -229,7 +227,7 @@
         >
           <div
             data-sws-background
-            class="relative h-96 md:h-[500px] overflow-hidden"
+            class="relative h-96 md:h-[600px] overflow-hidden"
           >
             <img
               src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop"
@@ -261,7 +259,7 @@
           </div>
           <div
             data-sws-dialog-box
-            class="absolute bottom-4 left-4 right-4 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-2xl z-20 min-h-36 border border-blue-400/40 shadow-xl"
+            class="absolute bottom-8 left-8 right-8 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-xl z-20 min-h-36 border-2 border-blue-400/40 shadow-xl"
           >
             <h4
               data-sws-active-subject-name
@@ -315,18 +313,18 @@
         </div>
 
         <!-- Navigation Actions -->
-        <div data-sws-actions class="absolute bottom-3 right-3 z-30 flex gap-3">
+        <div data-sws-actions class="absolute bottom-4 right-4 z-30 flex">
           <button
             data-sws-button="back"
-            class="px-6 py-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-slate-500/50 backdrop-blur-sm"
+            class="px-6 py-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white font-semibold rounded-tl-full rounded-bl-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-slate-500/50 backdrop-blur-sm"
           >
-            ← Back
+            Back
           </button>
           <button
             data-sws-button="next"
-            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-blue-500/50 backdrop-blur-sm"
+            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-tr-full rounded-br-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-blue-500/50 backdrop-blur-sm"
           >
-            Next →
+            Next
           </button>
         </div>
       </section>
@@ -336,16 +334,6 @@
     <script src="../dist/sws.js"></script>
 
     <script>
-      // Additional custom interactions
-      console.log("🎭 SenangWebs Story Example Loaded!");
-      console.log(
-        "This story demonstrates the HTML-based declarative approach."
-      );
-      console.log(
-        "Navigate through the story using the Back and Next buttons."
-      );
-
-      // Add some visual enhancements
       document.addEventListener("DOMContentLoaded", function () {
         // Add sparkle effect on crystal mentions
         const dialogs = document.querySelectorAll("[data-sws-dialog-box] p");
