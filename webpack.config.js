@@ -11,7 +11,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     library: {
       name: 'SWS',
-      type: 'umd'
+      type: 'umd',
+      export: 'default'
     },
     globalObject: 'this'
   },

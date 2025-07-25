@@ -403,3 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const storyElements = document.querySelectorAll('[data-sws]');
     storyElements.forEach(el => new SWS(el));
 });
+
+// Export the SWS class for module systems
+export default SWS;
