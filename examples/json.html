@@ -9,7 +9,6 @@
         body {
             margin: 0;
             padding: 20px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
             min-height: 100vh;
         }
         
@@ -17,7 +16,7 @@
             max-width: 1000px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
@@ -25,18 +24,8 @@
         .header {
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
-            padding: 20px;
+            padding: 10px;
             text-align: center;
-        }
-        
-        .header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-        
-        .header p {
-            margin: 10px 0 0 0;
-            opacity: 0.9;
         }
         
         .controls {
@@ -44,13 +33,16 @@
             background: #f8f9fa;
             border-bottom: 1px solid #e9ecef;
             text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
         
         .controls button {
-            margin: 0 10px;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             background: #007bff;
             color: white;
             cursor: pointer;
@@ -76,7 +68,6 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Space Adventure</h1>
             <p>A SenangWebs Story Example - JSON/Programmatic Approach</p>
         </div>
         
@@ -88,7 +79,7 @@
         </div>
         
         <!-- This will be our story container -->
-        <div id="story-container" style="width: 100%;">
+        <div id="story-container" style="height: 600px;">
             <div id="loading">
                 <h3>👆 Choose a story to load using the buttons above</h3>
                 <p>This example demonstrates how to initialize SenangWebs Story using JSON data and JavaScript.</p>

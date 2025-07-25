@@ -8,10 +8,8 @@ body {
   margin: 0;
 }
 #story-container {
-  width: 800px;
-  height: 600px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -79,4 +77,22 @@ body {
   font-size: 1em;
   cursor: pointer;
   margin-left: 10px;
+}
+[data-sws-button="next"] {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+[data-sws-button="next"]:hover {
+  background-color: #218838;
+}
+[data-sws-button="back"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+[data-sws-button="back"]:hover {
+  background-color: #0069d9;
 }
