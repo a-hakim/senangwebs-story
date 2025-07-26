@@ -2,7 +2,7 @@
 
 A lightweight, dependency-free JavaScript library for creating interactive, visual novel-style story experiences with typewriter effects and character dialogue management.
 
-![](assets/20250726_103328_preview.png)
+![](preview.png)
 
 [DEMO - https://dev.use.senangwebs.com/make/senangwebs-story-demo](https://dev.use.senangwebs.com/make/senangwebs-story-demo)
 
