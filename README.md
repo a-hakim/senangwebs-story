@@ -2,6 +2,10 @@
 
 A lightweight, dependency-free JavaScript library for creating interactive, visual novel-style story experiences with typewriter effects and character dialogue management.
 
+![](assets/20250726_103328_preview.png)
+
+[DEMO - https://dev.use.senangwebs.com/make/senangwebs-story-demo](https://dev.use.senangwebs.com/make/senangwebs-story-demo)
+
 ## Features
 
 - **Zero Dependencies:** Pure JavaScript with no external libraries required.
@@ -27,38 +31,39 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
 
 ## Quick Start
 
-1.  **Include the files:** (Assuming a `dist/` directory)
-    ```html
-    <link rel="stylesheet" href="dist/sws.css">
-    <script src="dist/sws.js"></script>
-    ```
+1. **Include the files:** (Assuming a `dist/` directory)
 
-2.  **Create a minimal story:**
-    ```html
-    <div data-sws data-sws-dialog-speed="30">
-        <!-- Scene 1 -->
-        <div data-sws-scene-1>
-            <div data-sws-background>
-                <img src="path/to/background1.jpg" alt="Background">
-            </div>
-            <div data-sws-subjects>
-                <img src="path/to/character1.png" data-sws-subject-id="char1" data-sws-subject-name="Hero">
-            </div>
-            <div data-sws-dialog-box>
-                <h4 data-sws-active-subject-name></h4>
-                <div data-sws-dialog-1 data-sws-subject="char1">
-                    <p>Hello, welcome to the story!</p>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Navigation -->
-        <div data-sws-actions>
-            <button data-sws-button="back">Back</button>
-            <button data-sws-button="next">Next</button>
-        </div>
-    </div>
-    ```
+   ```html
+   <link rel="stylesheet" href="dist/sws.css">
+   <script src="dist/sws.js"></script>
+   ```
+2. **Create a minimal story:**
+
+   ```html
+   <div data-sws data-sws-dialog-speed="30">
+       <!-- Scene 1 -->
+       <div data-sws-scene-1>
+           <div data-sws-background>
+               <img src="path/to/background1.jpg" alt="Background">
+           </div>
+           <div data-sws-subjects>
+               <img src="path/to/character1.png" data-sws-subject-id="char1" data-sws-subject-name="Hero">
+           </div>
+           <div data-sws-dialog-box>
+               <h4 data-sws-active-subject-name></h4>
+               <div data-sws-dialog-1 data-sws-subject="char1">
+                   <p>Hello, welcome to the story!</p>
+               </div>
+           </div>
+       </div>
+
+       <!-- Navigation -->
+       <div data-sws-actions>
+           <button data-sws-button="back">Back</button>
+           <button data-sws-button="next">Next</button>
+       </div>
+   </div>
+   ```
 
 The library automatically initializes on page load and brings your story to life.
 
@@ -78,7 +83,7 @@ For the fastest setup, include SWS directly from a CDN:
 </head>
 <body>
     <!-- Your Story HTML here -->
-    
+  
     <!-- SWS JavaScript from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/senangwebs-story@latest/dist/sws.js"></script>
 </body>
@@ -125,34 +130,38 @@ Include the built files in your HTML:
 
 Configure your story using `data-*` attributes.
 
-| Attribute | Description |
-|-----------|-------------|
-| `data-sws` | **Required.** Marks the root container for a story. |
-| `data-sws-id` | An optional unique identifier for the story instance. |
-| `data-sws-dialog-speed` | Sets the typewriter animation speed in milliseconds (default: 50). Lower values = faster typing. |
-| `data-sws-scene-[n]` | Defines a scene, where `[n]` is a 1-based index (e.g., `data-sws-scene-1`). |
-| `data-sws-scene-start` | A string of JavaScript to execute when the scene begins. |
-| `data-sws-background` | A container within a scene for the background `<img>`. |
-| `data-sws-subjects` | A container within a scene for all character `<img>` elements. |
-| `data-sws-subject-id` | A unique ID for a character `<img>` tag. |
-| `data-sws-subject-name` | The display name for a character, shown above the dialogue. |
-| `data-sws-dialog-box` | The container within a scene that holds the dialogue text. |
-| `data-sws-active-subject-name`| An element (e.g., `<h4>`) to display the current speaker's name. |
-| `data-sws-dialog-[n]` | Defines a single piece of dialogue within a scene. |
-| `data-sws-subject` | Links a dialogue to a character via their `data-sws-subject-id`. |
-| `data-sws-dialog-start` | A string of JavaScript to execute when the dialogue begins. |
-| `data-sws-actions` | The container for navigation controls. |
-| `data-sws-button` | Defines a button's function. Values: `back` or `next`. |
+
+| Attribute                      | Description                                                                                      |
+| -------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `data-sws`                     | **Required.** Marks the root container for a story.                                              |
+| `data-sws-id`                  | An optional unique identifier for the story instance.                                            |
+| `data-sws-dialog-speed`        | Sets the typewriter animation speed in milliseconds (default: 50). Lower values = faster typing. |
+| `data-sws-scene-[n]`           | Defines a scene, where`[n]` is a 1-based index (e.g., `data-sws-scene-1`).                       |
+| `data-sws-scene-start`         | A string of JavaScript to execute when the scene begins.                                         |
+| `data-sws-background`          | A container within a scene for the background`<img>`.                                            |
+| `data-sws-subjects`            | A container within a scene for all character`<img>` elements.                                    |
+| `data-sws-subject-id`          | A unique ID for a character`<img>` tag.                                                          |
+| `data-sws-subject-name`        | The display name for a character, shown above the dialogue.                                      |
+| `data-sws-dialog-box`          | The container within a scene that holds the dialogue text.                                       |
+| `data-sws-active-subject-name` | An element (e.g.,`<h4>`) to display the current speaker's name.                                  |
+| `data-sws-dialog-[n]`          | Defines a single piece of dialogue within a scene.                                               |
+| `data-sws-subject`             | Links a dialogue to a character via their`data-sws-subject-id`.                                  |
+| `data-sws-dialog-start`        | A string of JavaScript to execute when the dialogue begins.                                      |
+| `data-sws-actions`             | The container for navigation controls.                                                           |
+| `data-sws-button`              | Defines a button's function. Values:`back` or `next`.                                            |
 
 ## Core Components Explained
 
 ### Scenes & Dialogues
+
 A story is a collection of **scenes**. Each scene has its own background, set of characters, and a sequence of **dialogues**. The library progresses linearly from dialogue to dialogue, and from scene to scene.
 
 ### Subjects (Characters)
+
 Subjects are the characters in your story. You define them with an `<img>` tag and give them a `data-sws-subject-id`. To make a character speak, you link their `id` to a dialogue using the `data-sws-subject` attribute. The library will automatically apply an `active` class to the current speaker.
 
 ### Typewriter Effect
+
 To create an immersive experience, all dialogue text is animated with a character-by-character "typewriter" effect. The animation speed can be customized:
 
 - **HTML Approach:** Use `data-sws-dialog-speed="30"` on the story container (speed in milliseconds per character)
@@ -166,6 +175,7 @@ To create an immersive experience, all dialogue text is animated with a characte
 The typewriter animation speed can be customized to match your story's pacing needs:
 
 ### HTML/Declarative Approach
+
 ```html
 <!-- Fast dialog speed (20ms per character) -->
 <div data-sws data-sws-dialog-speed="20">
@@ -184,6 +194,7 @@ The typewriter animation speed can be customized to match your story's pacing ne
 ```
 
 ### JSON/Programmatic Approach
+
 ```javascript
 const fastStory = {
     "id": "fast_story",
@@ -203,6 +214,7 @@ new SWS(container2, slowStory);
 ```
 
 ### Speed Guidelines
+
 - **Very Fast:** 10-20ms - Good for action sequences or when users want to read quickly
 - **Normal:** 30-50ms - Balanced speed for most stories (default: 50ms)
 - **Slow:** 60-100ms - Dramatic effect, good for emphasizing important dialogue
@@ -268,16 +280,17 @@ myStory.back(); // Moves to the previous dialogue/scene
 
 ### Key CSS Selectors & Classes
 
-| Selector/Class | Description |
-|----------------|-------------|
-| `[data-sws]` | The main story container. |
-| `[data-sws-scene-n]` | An individual scene container. |
-| `[data-sws-background] img`| The background image. |
-| `[data-sws-subjects] img` | A character image. |
-| `.active` | Applied to the currently speaking character's `<img>`. |
-| `[data-sws-dialog-box]` | The black box containing the dialogue text. |
-| `[data-sws-active-subject-name]` | The element holding the speaker's name. |
-| `[data-sws-actions] button` | The navigation buttons. |
+
+| Selector/Class                   | Description                                           |
+| ---------------------------------- | ------------------------------------------------------- |
+| `[data-sws]`                     | The main story container.                             |
+| `[data-sws-scene-n]`             | An individual scene container.                        |
+| `[data-sws-background] img`      | The background image.                                 |
+| `[data-sws-subjects] img`        | A character image.                                    |
+| `.active`                        | Applied to the currently speaking character's`<img>`. |
+| `[data-sws-dialog-box]`          | The black box containing the dialogue text.           |
+| `[data-sws-active-subject-name]` | The element holding the speaker's name.               |
+| `[data-sws-actions] button`      | The navigation buttons.                               |
 
 ### Custom Styling Example
 
@@ -309,12 +322,14 @@ myStory.back(); // Moves to the previous dialogue/scene
 ## Examples
 
 Check the `examples/` directory for complete implementations:
+
 - **`examples/index.html`** - A full story built using HTML `data-*` attributes with Tailwind CSS styling and custom dialog speed.
 - **`examples/json.html`** - Stories initialized from JavaScript objects with custom styling and dialog speed demonstration.
 
 ## Browser Support
 
 Works in all modern browsers supporting:
+
 - ES6 Classes and Arrow Functions
 - Dataset API (`element.dataset`)
 - Modern DOM methods (`querySelector`, `addEventListener`)
