@@ -44,7 +44,13 @@ class SWS {
             }
         }
         
-        const sceneElements = Array.from(this.element.querySelectorAll('[data-sws-scene-1], [data-sws-scene-2], [data-sws-scene-3], [data-sws-scene-4], [data-sws-scene-5], [data-sws-scene-6], [data-sws-scene-7], [data-sws-scene-8], [data-sws-scene-9]'));
+        // Find all elements with scene attributes dynamically (no limit)
+        const sceneElements = Array.from(this.element.querySelectorAll('*'))
+            .filter(el => Array.from(el.attributes).some(attr => /^data-sws-scene-\d+$/.test(attr.name)))
+            .sort((a, b) => {
+                const getSceneNum = el => parseInt(Array.from(el.attributes).find(attr => attr.name.startsWith('data-sws-scene-'))?.name.split('-').pop() || '0');
+                return getSceneNum(a) - getSceneNum(b);
+            });
 
         sceneElements.forEach((sceneEl, i) => {
             const scene = {
@@ -62,7 +68,13 @@ class SWS {
                 element: subjectEl
             }));
 
-            const dialogElements = Array.from(sceneEl.querySelectorAll('[data-sws-dialog-1], [data-sws-dialog-2], [data-sws-dialog-3], [data-sws-dialog-4], [data-sws-dialog-5], [data-sws-dialog-6], [data-sws-dialog-7], [data-sws-dialog-8], [data-sws-dialog-9]'));
+            // Find all elements with dialog attributes dynamically (no limit)
+            const dialogElements = Array.from(sceneEl.querySelectorAll('*'))
+                .filter(el => Array.from(el.attributes).some(attr => /^data-sws-dialog-\d+$/.test(attr.name)))
+                .sort((a, b) => {
+                    const getDialogNum = el => parseInt(Array.from(el.attributes).find(attr => attr.name.startsWith('data-sws-dialog-'))?.name.split('-').pop() || '0');
+                    return getDialogNum(a) - getDialogNum(b);
+                });
             dialogElements.forEach((dialogEl, j) => {
                 scene.dialogs.push({
                     element: dialogEl,

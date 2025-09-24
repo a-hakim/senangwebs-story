@@ -10,6 +10,7 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
 
 - **Zero Dependencies:** Pure JavaScript with no external libraries required.
 - **Dual Initialization:** Build stories declaratively with simple `data-*` attributes in your HTML, or programmatically using a clean JSON structure.
+- **Unlimited Scenes & Dialogues:** Create stories with any number of scenes and dialogues - no artificial limits.
 - **Scene & Dialogue Management:** Manages a sequence of scenes and dialogues, tracking the story's state automatically.
 - **Dynamic Visuals:**
   - Change background images with each new scene.
@@ -24,8 +25,6 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
 
 ## Limitations
 
-- **Scene Limit:** Currently supports up to 9 scenes per story (data-sws-scene-1 through data-sws-scene-9).
-- **Dialog Limit:** Up to 9 dialogs per scene (data-sws-dialog-1 through data-sws-dialog-9).
 - **Single Story Instance:** Each page can have multiple story containers, but each operates independently.
 - **Sequential Navigation:** Stories follow a linear progression; no branching or choice-based storylines.
 
