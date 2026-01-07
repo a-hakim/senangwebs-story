@@ -275,6 +275,29 @@ You can control the story flow programmatically.
 // Assuming 'myStory' is an SWS instance
 myStory.next(); // Moves to the next dialogue/scene
 myStory.back(); // Moves to the previous dialogue/scene
+myStory.destroy(); // Cleans up event listeners and resources (call before removing story)
+```
+
+### Keyboard Navigation
+
+The library supports keyboard navigation out of the box:
+
+| Key | Action |
+|-----|--------|
+| `→` Arrow Right | Next dialogue/scene |
+| `Space` | Next dialogue/scene |
+| `←` Arrow Left | Previous dialogue/scene |
+
+### Cleanup
+
+When dynamically loading stories or removing a story from the DOM, always call `destroy()` to prevent memory leaks:
+
+```javascript
+// Before loading a new story or removing the container
+if (currentStory) {
+    currentStory.destroy();
+    currentStory = null;
+}
 ```
 
 ## Styling & Customization
@@ -357,7 +380,7 @@ Works in all modern browsers supporting:
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License
 
 ## Contributing
 

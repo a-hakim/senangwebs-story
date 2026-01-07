@@ -13,6 +13,13 @@ class SWS {
         this.typewriterTimeout = null;
         this.isTypewriterRunning = false;
         this.dialogSpeed = 50; // Default speed in milliseconds
+        this._currentTypewriterText = ''; // Store full text for typewriter
+        this._currentTypewriterElement = null; // Store element for typewriter
+        
+        // Bind event handlers for proper cleanup
+        this._boundNext = () => this.next();
+        this._boundBack = () => this.back();
+        this._boundKeydown = (e) => this._handleKeydown(e);
 
         if (this.config) {
             this._initFromJSON();
@@ -76,9 +83,10 @@ class SWS {
                     return getDialogNum(a) - getDialogNum(b);
                 });
             dialogElements.forEach((dialogEl, j) => {
+                const pElement = dialogEl.querySelector('p');
                 scene.dialogs.push({
                     element: dialogEl,
-                    text: dialogEl.querySelector('p').innerHTML.trim(),
+                    text: pElement ? pElement.innerHTML.trim() : '',
                     subjectId: dialogEl.dataset.swsSubject || null,
                     dialogStart: dialogEl.dataset.swsDialogStart || null
                 });
@@ -231,8 +239,29 @@ class SWS {
         const nextButton = this.element.querySelector('[data-sws-button="next"]');
         const backButton = this.element.querySelector('[data-sws-button="back"]');
 
-        if (nextButton) nextButton.addEventListener('click', () => this.next());
-        if (backButton) backButton.addEventListener('click', () => this.back());
+        if (nextButton) nextButton.addEventListener('click', this._boundNext);
+        if (backButton) backButton.addEventListener('click', this._boundBack);
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', this._boundKeydown);
+    }
+    
+    /**
+     * Handles keyboard navigation.
+     * @param {KeyboardEvent} e - The keyboard event.
+     * @private
+     */
+    _handleKeydown(e) {
+        // Only handle if this story container or its children are focused, or no specific element is focused
+        if (!this.element) return;
+        
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            this.next();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            this.back();
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -357,18 +386,28 @@ class SWS {
     _typewriter(text, element) {
         if (!element) return;
         element.parentElement.style.display = '';
-        element.textContent = '';
+        element.innerHTML = '';
         this.isTypewriterRunning = true;
+        this._currentTypewriterText = text;
+        this._currentTypewriterElement = element;
         let i = 0;
+        
+        // Parse HTML to extract text content while preserving structure
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = text;
+        const plainText = tempDiv.textContent || tempDiv.innerText || '';
 
         const type = () => {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
+            if (i < plainText.length) {
+                element.textContent += plainText.charAt(i);
                 i++;
                 this.typewriterTimeout = setTimeout(type, this.dialogSpeed);
             } else {
-                // Typewriter animation completed
+                // Typewriter animation completed - restore full HTML
+                element.innerHTML = text;
                 this.isTypewriterRunning = false;
+                this._currentTypewriterText = '';
+                this._currentTypewriterElement = null;
             }
         };
         type();
@@ -387,9 +426,41 @@ class SWS {
             const dialog = scene.dialogs[this.currentDialogIndex];
             const dialogElement = scene.element.querySelector(`[data-sws-dialog-${this.currentDialogIndex + 1}]`);
             if (dialogElement) {
-                dialogElement.querySelector('p').textContent = dialog.text;
+                const pElement = dialogElement.querySelector('p');
+                if (pElement) {
+                    pElement.innerHTML = dialog.text; // Use innerHTML to preserve HTML formatting
+                }
             }
+            this._currentTypewriterText = '';
+            this._currentTypewriterElement = null;
         }
+    }
+    
+    /**
+     * Destroys the SWS instance and cleans up all resources.
+     * Call this before removing the story from the DOM or loading a new story.
+     */
+    destroy() {
+        // Clear any pending typewriter animation
+        if (this.typewriterTimeout) {
+            clearTimeout(this.typewriterTimeout);
+            this.typewriterTimeout = null;
+        }
+        
+        // Remove event listeners
+        const nextButton = this.element?.querySelector('[data-sws-button="next"]');
+        const backButton = this.element?.querySelector('[data-sws-button="back"]');
+        if (nextButton) nextButton.removeEventListener('click', this._boundNext);
+        if (backButton) backButton.removeEventListener('click', this._boundBack);
+        document.removeEventListener('keydown', this._boundKeydown);
+        
+        // Clear internal state
+        this.scenes = [];
+        this.isTypewriterRunning = false;
+        this._currentTypewriterText = '';
+        this._currentTypewriterElement = null;
+        this.element = null;
+        this.config = null;
     }
 
 
