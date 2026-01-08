@@ -1,6 +1,6 @@
 {
   "name": "senangwebs-story",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lightweight, dependency-free JavaScript library for creating interactive, visual novel-style story experiences.",
   "main": "dist/sws.min.js",
   "scripts": {
