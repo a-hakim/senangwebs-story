@@ -367,7 +367,11 @@
         function clearStory() {
             console.log('🧹 Clearing current story...');
             
-            currentStoryInstance = null;
+            // Properly destroy the instance to clean up event listeners
+            if (currentStoryInstance) {
+                currentStoryInstance.destroy();
+                currentStoryInstance = null;
+            }
             
             document.getElementById('story-container').innerHTML = `
                 <div id="loading">

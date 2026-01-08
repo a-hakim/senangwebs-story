@@ -5,329 +5,512 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SenangWebs Story - HTML Example</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-      /* Override SWS styles to work with Tailwind */
+      * { font-family: 'Noto Sans JP', 'Segoe UI', sans-serif; }
+      h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
       [data-sws-subjects] img.active {
         opacity: 1 !important;
-        transform: scale(1.05) !important;
+        transform: scale(1.08) translateY(-5px) !important;
+        filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.6)) !important;
       }
     </style>
   </head>
   <body
-    class="m-0 p-4 flex items-center justify-center bg-slate-900 min-h-screen font-sans"
+    class="m-0 p-0 flex items-center justify-center bg-gradient-to-br from-slate-950 via-amber-950 to-slate-950 min-h-screen overflow-x-hidden"
   >
-    <div
-      class="max-w-5xl mx-auto overflow-hidden shadow-xl rounded-xl border border-white/10 shadow-white/20"
-    >
-      <div
-        class="bg-gradient-to-br from-purple-300 via-purple-600 to-purple-800 text-white p-8 text-center relative overflow-hidden"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"
-        ></div>
-        <div class="relative z-10">
-          <h1
-            class="m-0 text-4xl font-bold mb-2 drop-shadow-lg"
+    <!-- Ambient Background Effects -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-1/4 -left-32 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-amber-900/5 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto p-4 md:p-6">
+      <!-- Main Story Container -->
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-amber-900/30 border border-white/5 bg-gradient-to-b from-slate-900/80 to-slate-950/90 backdrop-blur-sm">
+        
+        <!-- Header -->
+        <div class="relative bg-gradient-to-r from-amber-900/80 via-orange-900/80 to-amber-900/80 text-white py-6 px-8 text-center border-b border-amber-500/20">
+          <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-50"></div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-center gap-3 mb-2">
+              <span class="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></span>
+              <span class="text-amber-300 text-sm tracking-[0.3em] uppercase font-light">Visual Novel</span>
+              <span class="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-white to-amber-200 drop-shadow-lg mb-2">
+              The Magical Adventure
+            </h1>
+            <p class="text-amber-300/80 text-sm tracking-wider font-light">
+              A SenangWebs Story Example — HTML/Declarative Approach
+            </p>
+          </div>
+        </div>
+
+        <!-- SenangWebs Story Container -->
+        <section
+          data-sws
+          data-sws-id="magical_adventure"
+          data-sws-dialog-speed="40"
+          class="relative"
+        >
+          <!-- Scene 1: The Forest -->
+          <div
+            data-sws-scene-1="true"
+            data-sws-scene-start="console.log('Welcome to the Magical Forest!')"
+            class="relative"
           >
-            The Magical Adventure
-          </h1>
-          <p class="mt-3 mb-0 opacity-90 text-purple-100 text-lg font-medium">
-            A SenangWebs Story Example - HTML/Declarative Approach<br>
+            <!-- Background -->
+            <div
+              data-sws-background
+              class="relative h-[500px] md:h-[650px] overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
+                alt="Forest Background"
+                class="w-full h-full object-cover scale-105 transition-transform duration-700"
+              />
+              <!-- Layered Gradients for Depth -->
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-transparent to-emerald-900/20"></div>
+              <!-- Vignette Effect -->
+              <div class="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]"></div>
+            </div>
+
+            <!-- Characters -->
+            <div
+              data-sws-subjects
+              class="absolute bottom-28 left-0 right-0 z-10 flex justify-center items-end gap-4 md:gap-8 px-4"
+            >
+              <img
+                src="./images/alex_adventure_1.png"
+                data-sws-subject-id="hero"
+                data-sws-subject-name="Alex the Adventurer"
+                alt="Hero"
+                class="h-64 md:h-80 object-contain opacity-40 transition-all duration-500 ease-out cursor-pointer hover:opacity-90 hover:scale-105 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              />
+              <img
+                src="./images/luna_wiseman.png"
+                data-sws-subject-id="sage"
+                data-sws-subject-name="Luna the Wise"
+                alt="Sage"
+                class="h-64 md:h-80 object-contain opacity-40 transition-all duration-500 ease-out cursor-pointer hover:opacity-90 hover:scale-105 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+
+            <!-- Dialog Box -->
+            <div
+              data-sws-dialog-box
+              class="absolute bottom-0 left-0 right-0 mx-4 md:mx-8 mb-4 z-20"
+            >
+              <div class="relative bg-slate-950/95 backdrop-blur-xl rounded-xl border border-emerald-500/30 shadow-2xl shadow-emerald-900/20 overflow-hidden">
+                <!-- Dialog Box Decorations -->
+                <div class="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-emerald-400/50 rounded-tl-xl"></div>
+                <div class="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-emerald-400/50 rounded-tr-xl"></div>
+                <div class="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-emerald-400/50 rounded-bl-xl"></div>
+                <div class="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-emerald-400/50 rounded-br-xl"></div>
+                
+                <!-- Content -->
+                <div class="p-5 md:p-6 min-h-32 md:min-h-36">
+                  <h4
+                    data-sws-active-subject-name
+                    class="mb-3 text-lg md:text-xl font-bold text-emerald-400 tracking-wide drop-shadow-[0_0_10px_rgba(52,211,153,0.5)]"
+                  ></h4>
+                  
+                  <div data-sws-dialog-1>
+                    <p class="text-base md:text-lg leading-relaxed italic text-emerald-300/90 font-light tracking-wide text-center py-2">
+                      ✦ The ancient trees whisper secrets older than memory. Shafts of golden light pierce through the emerald canopy, illuminating a path that few mortals have ever walked. ✦
+                    </p>
+                  </div>
+                  <div
+                    data-sws-dialog-2
+                    data-sws-subject="hero"
+                    data-sws-dialog-start="console.log('Hero speaks!')"
+                  >
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      Three days I've walked without rest. Three days since I watched the frost creep across my mother's garden... since I saw the light fade from my father's eyes. They say the Crystal of Eternal Light can undo even death's shadow.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-3 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      The villagers called it a fool's errand. Perhaps they were right. But what choice does a child have when their entire world is fading to gray?
+                    </p>
+                  </div>
+                  <div data-sws-dialog-4>
+                    <p class="text-base md:text-lg leading-relaxed italic text-emerald-300/90 font-light tracking-wide text-center py-2">
+                      ✦ A figure emerges from the mist between the trees — her silver hair flows like moonlight, and her eyes hold the depth of countless centuries. ✦
+                    </p>
+                  </div>
+                  <div data-sws-dialog-5 data-sws-subject="sage">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      So much pain in one so young. The forest trembled when you crossed its threshold, Alex. It felt the weight of your grief... and the fire of your determination.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-6 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      You know my name? Then perhaps you know why I've come. Please... I've heard tales of a sage who knows the path to the Crystal. Are you—
+                    </p>
+                  </div>
+                  <div data-sws-dialog-7 data-sws-subject="sage">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      I am Luna, keeper of forgotten roads. And yes, child, I know what you seek. The Crystal of Eternal Light rests in Shadowpeak Mountain — but the path there is paved with more than stone.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-8 data-sws-subject="sage">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      The Shadow Dragon guards it — a creature born from the world's first darkness. Many have sought the Crystal. None have returned. Are you prepared to become one of the lost?
+                    </p>
+                  </div>
+                  <div data-sws-dialog-9 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      Lost? I'm already lost, Luna. Without my family, I am nothing but a ghost walking among the living. If I fail, at least I'll fail trying to save them rather than watching them die.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-10 data-sws-subject="sage">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      Ah... There it is. That ember of defiance that burns brighter than fear. Very well. I shall give you something no other seeker has possessed — the map forged by starlight and sorrow.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-11>
+                    <p class="text-base md:text-lg leading-relaxed italic text-emerald-300/90 font-light tracking-wide text-center py-2">
+                      ✦ Luna presses an ancient scroll into your trembling hands. As your fingers touch the parchment, visions flood your mind — jagged peaks shrouded in eternal storm, eyes like smoldering coals watching from the darkness. ✦
+                    </p>
+                  </div>
+                  <div data-sws-dialog-12 data-sws-subject="sage">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      Remember this, young one: the dragon cannot be defeated by blade or flame. Only truth can pierce his ancient heart. Speak from your soul, and perhaps... perhaps you will be the one who finally returns.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene 2: The Mountain Path -->
+          <div
+            data-sws-scene-2="true"
+            style="display: none"
+            data-sws-scene-start="console.log('Arriving at the dangerous mountain!')"
+            class="relative"
+          >
+            <div
+              data-sws-background
+              class="relative h-[500px] md:h-[650px] overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+                alt="Mountain Background"
+                class="w-full h-full object-cover scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-red-900/30 via-transparent to-red-900/30"></div>
+              <div class="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]"></div>
+            </div>
+
+            <div
+              data-sws-subjects
+              class="absolute bottom-28 left-0 right-0 z-10 flex justify-center items-end gap-4 md:gap-8 px-4"
+            >
+              <img
+                src="./images/alex_adventure_2.png"
+                data-sws-subject-id="hero"
+                data-sws-subject-name="Alex the Adventurer"
+                alt="Hero"
+                class="h-64 md:h-80 object-contain opacity-40 transition-all duration-500 ease-out cursor-pointer hover:opacity-90 hover:scale-105 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              />
+              <img
+                src="./images/shadow_dragon.png"
+                data-sws-subject-id="dragon"
+                data-sws-subject-name="Shadow Dragon"
+                alt="Dragon"
+                class="h-96 md:h-[480px] object-contain opacity-40 transition-all duration-500 ease-out cursor-pointer hover:opacity-90 hover:scale-105 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+
+            <div
+              data-sws-dialog-box
+              class="absolute bottom-0 left-0 right-0 mx-4 md:mx-8 mb-4 z-20"
+            >
+              <div class="relative bg-slate-950/95 backdrop-blur-xl rounded-xl border border-emerald-500/30 shadow-2xl shadow-emerald-900/20 overflow-hidden">
+                <div class="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-emerald-400/50 rounded-tl-xl"></div>
+                <div class="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-emerald-400/50 rounded-tr-xl"></div>
+                <div class="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-emerald-400/50 rounded-bl-xl"></div>
+                <div class="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-emerald-400/50 rounded-br-xl"></div>
+                
+                <div class="p-5 md:p-6 min-h-32 md:min-h-36">
+                  <h4
+                    data-sws-active-subject-name
+                    class="mb-3 text-lg md:text-xl font-bold text-emerald-400 tracking-wide drop-shadow-[0_0_10px_rgba(52,211,153,0.5)]"
+                  ></h4>
+                  
+                  <div data-sws-dialog-1>
+                    <p class="text-base md:text-lg leading-relaxed italic text-orange-300/90 font-light tracking-wide text-center py-2">
+                      ✦ The mountain looms like a wound in the sky. Lightning dances between clouds that have not parted in centuries. The bones of fallen seekers line the path — silent warnings written in calcium and regret. ✦
+                    </p>
+                  </div>
+                  <div data-sws-dialog-2 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      So many came before me. Warriors, mages, kings with armies at their backs... all reduced to dust and memory. What makes me think I'll be any different?
+                    </p>
+                  </div>
+                  <div data-sws-dialog-3 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      No. I won't turn back. Even if this mountain becomes my tomb, I'll climb until my last breath. For them. For everyone waiting in the village with hope I promised to return with.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-4>
+                    <p class="text-base md:text-lg leading-relaxed italic text-orange-300/90 font-light tracking-wide text-center py-2">
+                      ⚡ The earth SCREAMS. A fissure tears open before you, and from the abyss rises a nightmare made manifest — scales like shattered obsidian, eyes burning with the fury of dying stars! ⚡
+                    </p>
+                  </div>
+                  <div
+                    data-sws-dialog-5
+                    data-sws-subject="dragon"
+                    data-sws-dialog-start="console.log('The dragon appears!')"
+                  >
+                    <p class="text-base md:text-lg leading-loose font-bold text-emerald-300 uppercase tracking-widest">
+                      ANOTHER THIEF CRAWLS TO MY DOMAIN. A thousand years I have waited, mortal. A thousand years I have fed on the desperation of your kind.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-6 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-medium tracking-wide">
+                      Tell me, little creature — do you come bearing steel? Sorcery? What pitiful weapon do you bring against the Shadow Dragon, first-born of the endless night?
+                    </p>
+                  </div>
+                  <div data-sws-dialog-7 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      I... I carry no weapon that could harm you, great one. Only a map, a dying hope, and the love I bear for people who may already be beyond saving.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-8 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-medium tracking-wide">
+                      No weapon? Then you are either the wisest mortal to climb this mountain... or the most foolish. Perhaps both.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-9 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      I know I cannot defeat you. I know you have watched civilizations rise and fall like waves upon the shore. You've seen empires turn to sand while you remained unchanged.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-10 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      But even you must remember what it felt like to love something. To have something worth protecting. That's all I have, Dragon. That's all I am.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-11 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-medium tracking-wide">
+                      ... Hm. You tremble, yet you speak. Your voice breaks, yet you do not beg. This is... unexpected. The warriors demanded. The kings threatened. You... you simply speak your truth.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-12 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-medium tracking-wide">
+                      Very well, small one. You have earned something the others never could — a chance. Answer my riddle, and the Crystal shall be yours. Fail, and your bones will join the others on my path.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene 3: The Resolution -->
+          <div
+            data-sws-scene-3="true"
+            style="display: none"
+            data-sws-scene-start="console.log('The final scene begins!')"
+            class="relative"
+          >
+            <div
+              data-sws-background
+              class="relative h-[500px] md:h-[650px] overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop"
+                alt="Crystal Cave Background"
+                class="w-full h-full object-cover scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-blue-900/30 via-transparent to-indigo-900/30"></div>
+              <div class="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]"></div>
+            </div>
+
+            <div
+              data-sws-subjects
+              class="absolute bottom-28 left-0 right-0 z-10 flex justify-center items-end gap-4 md:gap-8 px-4"
+            >
+              <img
+                src="./images/alex_adventure_3.png"
+                data-sws-subject-id="hero"
+                data-sws-subject-name="Alex the Adventurer"
+                alt="Hero"
+                class="h-64 md:h-80 object-contain opacity-40 transition-all duration-500 ease-out cursor-pointer hover:opacity-90 hover:scale-105 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              />
+              <img
+                src="./images/shadow_dragon.png"
+                data-sws-subject-id="dragon"
+                data-sws-subject-name="Shadow Dragon"
+                alt="Dragon"
+                class="h-96 md:h-[480px] object-contain opacity-40 transition-all duration-500 ease-out cursor-pointer hover:opacity-90 hover:scale-105 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+
+            <div
+              data-sws-dialog-box
+              class="absolute bottom-0 left-0 right-0 mx-4 md:mx-8 mb-4 z-20"
+            >
+              <div class="relative bg-slate-950/95 backdrop-blur-xl rounded-xl border border-emerald-500/30 shadow-2xl shadow-emerald-900/20 overflow-hidden">
+                <div class="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-emerald-400/50 rounded-tl-xl"></div>
+                <div class="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-emerald-400/50 rounded-tr-xl"></div>
+                <div class="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-emerald-400/50 rounded-bl-xl"></div>
+                <div class="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-emerald-400/50 rounded-br-xl"></div>
+                
+                <div class="p-5 md:p-6 min-h-32 md:min-h-36">
+                  <h4
+                    data-sws-active-subject-name
+                    class="mb-3 text-lg md:text-xl font-bold text-emerald-400 tracking-wide drop-shadow-[0_0_10px_rgba(52,211,153,0.5)]"
+                  ></h4>
+                  
+                  <div data-sws-dialog-1>
+                    <p class="text-base md:text-lg leading-relaxed italic text-blue-300/90 font-light tracking-wide text-center py-2">
+                      ✦ Deep within the mountain's heart, crystals pulse with inner light like frozen stars. The air itself seems to hold its breath, waiting for what comes next. ✦
+                    </p>
+                  </div>
+                  <div data-sws-dialog-2 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-200 font-light tracking-wide">
+                      Listen well, for I shall speak this riddle only once. Many have heard these words. None have understood them.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-3 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-200 font-medium tracking-wide">
+                      "I am the wound that heals the healer. I am the loss that creates the finder. I am the darkness that births the light. I end all things, yet through me, all things begin anew. What am I?"
+                    </p>
+                  </div>
+                  <div data-sws-dialog-4 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      The wound that heals... the loss that creates... They all tried to answer with grand things. Light, love, hope, time...
+                    </p>
+                  </div>
+                  <div data-sws-dialog-5 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      But those are just ideas. I've lived the answer. I've felt it carve hollow places in my chest. The wound that made me into someone capable of climbing this mountain...
+                    </p>
+                  </div>
+                  <div data-sws-dialog-6 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      The answer is... Grief. Grief breaks us so we can become something new. It ends who we were, and from that ending, we're reborn. Without it, we would never grow. Never change. Never truly understand what we have until it's gone.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-7>
+                    <p class="text-base md:text-lg leading-relaxed italic text-amber-300/90 font-light tracking-wide text-center py-2">
+                      ✦ Silence falls like snow. The dragon's ancient eyes widen, and for the first time in a thousand years, something glistens at their edges — tears of liquid starlight. ✦
+                    </p>
+                  </div>
+                  <div data-sws-dialog-8 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-bold tracking-wide">
+                      ... In all my centuries, no one has ever... You understand. You truly understand.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-9 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-medium tracking-wide">
+                      I was not always this creature of shadow, young Alex. Long ago, I too loved and lost. I guard this Crystal not as treasure, but as a memorial to one I could not save. My grief became my prison.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-10 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-bold tracking-wide">
+                      Take the Crystal. Let it heal your village, your family. And perhaps... in doing so, it will finally heal me as well. You've reminded me that grief was never meant to make us monsters. It was meant to make us human.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-11>
+                    <p class="text-base md:text-lg leading-relaxed italic text-amber-300/90 font-light tracking-wide text-center py-2">
+                      ✨ The dragon breathes — not fire, but pure, radiant warmth — upon a crystal that begins to glow like captured sunrise. It floats gently into your hands, and with it, you feel the weight of a thousand years of loneliness finally lifting. ✨
+                    </p>
+                  </div>
+                  <div data-sws-dialog-12 data-sws-subject="hero">
+                    <p class="text-base md:text-lg leading-relaxed text-gray-200 font-light tracking-wide">
+                      Thank you... not just for the Crystal, but for trusting me with your story. I will tell them — everyone — that you weren't a monster. You were just... grieving. Like the rest of us.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-13 data-sws-subject="dragon">
+                    <p class="text-base md:text-lg leading-relaxed text-emerald-300 font-medium tracking-wide">
+                      Go now, Alex the Adventurer. Your family awaits. And should you ever feel lost in the darkness of your own sorrow... remember that even dragons can find their way back to the light.
+                    </p>
+                  </div>
+                  <div data-sws-dialog-14>
+                    <p class="text-lg md:text-xl leading-relaxed italic text-amber-200 font-semibold tracking-wide text-center py-4">
+                      ❖ And so, Alex returned — not as a hero who slayed a dragon, but as a child who healed one. The Crystal's light restored the village, but its greatest gift was the story Alex carried: that even in our deepest darkness, connection and truth can set us free. ❖
+                    </p>
+                  </div>
+                  <div data-sws-dialog-15>
+                    <p class="text-base md:text-lg leading-relaxed italic text-blue-300/90 font-light tracking-wide text-center py-2">
+                      ✦ Some say that on quiet nights, villagers still see a great shadow soaring among the stars — no longer a creature of darkness, but a guardian watching over those who learned that the greatest adventures are those of the heart. ✦
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Actions -->
+          <div data-sws-actions class="absolute bottom-40 md:bottom-44 right-4 md:right-8 z-30 flex gap-2">
+            <button
+              data-sws-button="back"
+              class="group relative px-5 py-2.5 bg-slate-900/90 hover:bg-slate-800/90 text-white text-sm font-medium rounded-lg shadow-lg transition-all duration-300 hover:scale-105 border border-slate-600/50 backdrop-blur-sm overflow-hidden"
+            >
+              <span class="absolute inset-0 bg-gradient-to-r from-slate-700/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span class="relative flex items-center gap-2">
+                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back
+              </span>
+            </button>
+            <button
+              data-sws-button="next"
+              class="group relative px-5 py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white text-sm font-medium rounded-lg shadow-lg shadow-amber-900/40 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-amber-800/40 border border-amber-400/30 backdrop-blur-sm overflow-hidden"
+            >
+              <span class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span class="relative flex items-center gap-2">
+                Next
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Click/Tap Indicator -->
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 text-white/40 text-xs tracking-widest animate-pulse pointer-events-none">
+            <span>CLICK [NEXT] TO CONTINUE</span>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="bg-slate-950/80 border-t border-white/5 py-3 px-6 text-center">
+          <p class="text-gray-500 text-xs tracking-wider">
+            Powered by <span class="text-amber-400 font-medium">SenangWebs Story</span> — Interactive Visual Novel Engine
           </p>
         </div>
       </div>
-
-      <!-- SenangWebs Story Container -->
-      <section data-sws data-sws-id="magical_adventure" data-sws-dialog-speed="40" class="relative">
-        <!-- Scene 1: The Forest -->
-        <div
-          data-sws-scene-1="true"
-          data-sws-scene-start="console.log('Welcome to the Magical Forest!')"
-          class="relative"
-        >
-          <div
-            data-sws-background
-            class="relative h-96 md:min-h-[600px] overflow-hidden"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
-              alt="Forest Background"
-              class="w-full h-full object-cover transition-all duration-500"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
-            ></div>
-          </div>
-          <div
-            data-sws-subjects
-            class="absolute -bottom-20 left-0 w-full h-full z-10 flex justify-center items-end px-4"
-          >
-            <img
-              src="./images/alex_adventure_1.webp"
-              data-sws-subject-id="hero"
-              data-sws-subject-name="Alex the Adventurer"
-              alt="Hero"
-              class="max-h-full opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 hover:scale-105 aspect-[2/3]"
-            />
-            <img
-              src="./images/luna_wiseman.webp"
-              data-sws-subject-id="sage"
-              data-sws-subject-name="Luna the Wise"
-              alt="Sage"
-              class="max-h-full opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 hover:scale-105 aspect-[2/3]"
-            />
-          </div>
-          <div
-            data-sws-dialog-box
-            class="absolute bottom-8 left-8 right-8 bg-slate-900/85 backdrop-blur-md text-white p-6 pb-12 rounded-xl z-20 min-h-36 border-2 border-emerald-400/40 shadow-xl"
-          >
-            <h4
-              data-sws-active-subject-name
-              class="m-0 mb-3 text-xl font-bold text-emerald-400 drop-shadow-md"
-            ></h4>
-            <div
-              data-sws-dialog-1
-              data-sws-subject="hero"
-              data-sws-dialog-start="console.log('Hero speaks!')"
-            >
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                Finally! I've reached the mystical forest that everyone talks
-                about. The legends say there's a wise sage living here who can
-                help me on my quest.
-              </p>
-            </div>
-            <div data-sws-dialog-2 data-sws-subject="sage">
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                Welcome, young traveler. I've been expecting you. The winds
-                whispered of your arrival. You seek the Crystal of Eternal
-                Light, don't you?
-              </p>
-            </div>
-            <div data-sws-dialog-3 data-sws-subject="hero">
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                How did you know? Yes, my village is in danger, and only the
-                Crystal can save it. Will you help me find it?
-              </p>
-            </div>
-            <div data-sws-dialog-4 data-sws-subject="sage">
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                The path is treacherous, but your heart is pure. I will give you
-                an ancient map, but beware - the Crystal is guarded by the
-                Shadow Dragon.
-              </p>
-            </div>
-            <div data-sws-dialog-5>
-              <p
-                class="m-0 text-base leading-relaxed italic text-emerald-200 font-medium"
-              >
-                The sage hands you a glowing scroll. As you touch it, visions of
-                a dark mountain flash before your eyes.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Scene 2: The Mountain Path -->
-        <div
-          data-sws-scene-2="true"
-          style="display: none"
-          data-sws-scene-start="console.log('Arriving at the dangerous mountain!')"
-          class="relative"
-        >
-          <div
-            data-sws-background
-            class="relative h-96 md:h-[600px] overflow-hidden"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
-              alt="Mountain Background"
-              class="w-full h-full object-cover transition-all duration-500"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-red-900/20 to-transparent"
-            ></div>
-          </div>
-          <div
-            data-sws-subjects
-            class="absolute -bottom-20 left-0 w-full h-full z-10 flex justify-center items-end px-4"
-          >
-            <img
-              src="./images/alex_adventure_2.webp"
-              data-sws-subject-id="hero"
-              data-sws-subject-name="Alex the Adventurer"
-              alt="Hero"
-              class="max-h-full opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 hover:scale-105 aspect-[2/3]"
-            />
-            <img
-              src="./images/shadow_dragon.webp"
-              data-sws-subject-id="dragon"
-              data-sws-subject-name="Shadow Dragon"
-              alt="Dragon"
-              class="max-h-full opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 hover:scale-105 aspect-[2/3]"
-            />
-          </div>
-          <div
-            data-sws-dialog-box
-            class="absolute bottom-8 left-8 right-8 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-xl z-20 min-h-36 border-2 border-red-400/40 shadow-xl"
-          >
-            <h4
-              data-sws-active-subject-name
-              class="m-0 mb-3 text-xl font-bold text-red-400 drop-shadow-md"
-            ></h4>
-            <div data-sws-dialog-1 data-sws-subject="hero">
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                The mountain is even more ominous than I imagined. Dark clouds
-                swirl around its peak, and I can feel an ancient power emanating
-                from within.
-              </p>
-            </div>
-            <div data-sws-dialog-2>
-              <p
-                class="m-0 text-base leading-relaxed italic text-orange-200 font-medium"
-              >
-                Suddenly, the ground trembles! A massive shadow passes overhead,
-                and with a thunderous roar, the Shadow Dragon descends!
-              </p>
-            </div>
-            <div
-              data-sws-dialog-3
-              data-sws-subject="dragon"
-              data-sws-dialog-start="console.log('The dragon appears!')"
-            >
-              <p
-                class="m-0 text-base leading-relaxed font-bold text-red-300 uppercase tracking-wide"
-              >
-                WHO DARES DISTURB MY SLUMBER? Mortal, you seek the Crystal that
-                has been mine for a thousand years!
-              </p>
-            </div>
-            <div data-sws-dialog-4 data-sws-subject="hero">
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                Great Dragon, I don't wish to fight you. My village is dying,
-                and only the Crystal's power can save them. Please, have mercy!
-              </p>
-            </div>
-            <div data-sws-dialog-5 data-sws-subject="dragon">
-              <p
-                class="m-0 text-base leading-relaxed text-red-300 font-semibold"
-              >
-                Hmm... Your heart speaks truth, young one. Very well. Prove your
-                worth with a riddle, and the Crystal shall be yours.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Scene 3: The Resolution -->
-        <div
-          data-sws-scene-3="true"
-          style="display: none"
-          data-sws-scene-start="console.log('The final scene begins!')"
-          class="relative"
-        >
-          <div
-            data-sws-background
-            class="relative h-96 md:h-[600px] overflow-hidden"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop"
-              alt="Crystal Cave Background"
-              class="w-full h-full object-cover transition-all duration-500"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-blue-900/20 to-transparent"
-            ></div>
-          </div>
-          <div
-            data-sws-subjects
-            class="absolute -bottom-20 left-0 w-full h-full z-10 flex justify-center items-end px-4"
-          >
-            <img
-              src="./images/alex_adventure_3.webp"
-              data-sws-subject-id="hero"
-              data-sws-subject-name="Alex the Adventurer"
-              alt="Hero"
-              class="max-h-full opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 hover:scale-105 aspect-[2/3]"
-            />
-            <img
-              src="./images/shadow_dragon.webp"
-              data-sws-subject-id="dragon"
-              data-sws-subject-name="Shadow Dragon"
-              alt="Dragon"
-              class="max-h-full opacity-60 transition-all duration-300 ease-in-out hover:opacity-100 hover:scale-105 aspect-[2/3]"
-            />
-          </div>
-          <div
-            data-sws-dialog-box
-            class="absolute bottom-8 left-8 right-8 bg-slate-900/85 backdrop-blur-md text-white p-6 rounded-xl z-20 min-h-36 border-2 border-blue-400/40 shadow-xl"
-          >
-            <h4
-              data-sws-active-subject-name
-              class="m-0 mb-3 text-xl font-bold text-blue-400 drop-shadow-md"
-            ></h4>
-            <div data-sws-dialog-1 data-sws-subject="dragon">
-              <p
-                class="m-0 text-base leading-relaxed text-blue-200 font-medium"
-              >
-                Here is my riddle: "I am not seen, yet I give sight. I am not
-                heard, yet I bring understanding. What am I?"
-              </p>
-            </div>
-            <div data-sws-dialog-2 data-sws-subject="hero">
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                I think... the answer is 'Light'! Light itself cannot be seen,
-                but it allows us to see. And understanding comes from
-                enlightenment!
-              </p>
-            </div>
-            <div data-sws-dialog-3 data-sws-subject="dragon">
-              <p class="m-0 text-base leading-relaxed text-green-300 font-bold">
-                CORRECT! You have proven yourself worthy. Take the Crystal of
-                Eternal Light, and may it bring hope to your people.
-              </p>
-            </div>
-            <div data-sws-dialog-4>
-              <p
-                class="m-0 text-base leading-relaxed italic text-yellow-200 font-medium"
-              >
-                The dragon breathes upon a magnificent crystal, making it glow
-                with pure white light. You carefully take it, feeling its warm,
-                healing energy.
-              </p>
-            </div>
-            <div data-sws-dialog-5 data-sws-subject="hero">
-              <p class="m-0 text-base leading-relaxed text-gray-100">
-                Thank you, wise dragon. I will never forget your kindness. My
-                village will sing songs of your mercy for generations to come!
-              </p>
-            </div>
-            <div data-sws-dialog-6>
-              <p
-                class="m-0 text-base leading-relaxed italic text-amber-200 font-bold text-center"
-              >
-                And so, Alex returned home as a hero, the Crystal's light saving
-                the village and bringing prosperity for years to come. THE END.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Navigation Actions -->
-        <div data-sws-actions class="absolute bottom-4 right-4 z-30 flex">
-          <button
-            data-sws-button="back"
-            class="px-6 py-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white font-semibold rounded-tl-full rounded-bl-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-slate-500/50 backdrop-blur-sm"
-          >
-            Back
-          </button>
-          <button
-            data-sws-button="next"
-            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-tr-full rounded-br-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl border border-blue-500/50 backdrop-blur-sm"
-          >
-            Next
-          </button>
-        </div>
-      </section>
     </div>
 
     <!-- Include the SenangWebs Story Library -->
@@ -335,11 +518,11 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Add sparkle effect on crystal mentions
+        // Add shimmer effect on crystal mentions
         const dialogs = document.querySelectorAll("[data-sws-dialog-box] p");
         dialogs.forEach((dialog) => {
           if (dialog.textContent.includes("Crystal")) {
-            dialog.style.textShadow = "0 0 10px rgba(255, 215, 0, 0.5)";
+            dialog.classList.add("bg-gradient-to-r", "from-transparent", "via-yellow-400/5", "to-transparent");
           }
         });
       });
