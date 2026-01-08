@@ -4,7 +4,7 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 
-![](https://cdn.jsdelivr.net/npm/senangwebs-story@latest/preview.png)
+![](https://raw.githubusercontent.com/a-hakim/senangwebs-story/refs/heads/master/preview.png)
 
 [DEMO - https://dev.use.senangwebs.com/make/senangwebs-story-demo](https://dev.use.senangwebs.com/make/senangwebs-story-demo)
 
