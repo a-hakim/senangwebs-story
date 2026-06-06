@@ -20,6 +20,7 @@ A lightweight, dependency-free JavaScript library for creating interactive, visu
   - Automatically toggles an `active` class on the current speaker.
 - **Typewriter Effect:** Dialogue text is rendered with a classic character-by-character animation with customizable speed.
 - **Smart Navigation:** Built-in "next" and "back" navigation with intelligent dialog completion - clicking "next" while text is typing completes the current dialog instead of skipping.
+- **Scoped Keyboard Navigation:** Each focusable story responds independently to arrow keys and Space without hijacking controls elsewhere on the page.
 - **Customizable Dialog Speed:** Set typing animation speed using `data-sws-dialog-speed` attribute (HTML) or `dialogSpeed` property (JSON).
 - **Event Callbacks:** Execute custom JavaScript functions at the start of any scene or dialogue for enhanced interactivity.
 - **Automatic UI Generation:** When using JSON, the library creates the complete HTML structure for the story.
@@ -280,13 +281,17 @@ myStory.destroy(); // Cleans up event listeners and resources (call before remov
 
 ### Keyboard Navigation
 
-The library supports keyboard navigation out of the box:
+The library supports keyboard navigation when the story is focused. Tab to the story, click its non-interactive content, or focus one of its controls to activate that instance:
 
 | Key | Action |
 |-----|--------|
 | `→` Arrow Right | Next dialogue/scene |
 | `Space` | Next dialogue/scene |
 | `←` Arrow Left | Previous dialogue/scene |
+
+Keyboard events are scoped to the focused story, so multiple stories on one page do not advance together. Inputs, textareas, selects, and editable content inside a story retain their native keyboard behavior. Space on a focused button also uses the button's native click behavior.
+
+SWS adds `tabindex="0"` when the story container does not already define a tab order. To exclude a story from sequential keyboard navigation while keeping programmatic focus available, set `tabindex="-1"` yourself.
 
 ### Cleanup
 

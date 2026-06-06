@@ -6,6 +6,10 @@
   position: relative;
   overflow: hidden;
 }
+[data-sws]:focus-visible {
+  outline: 3px solid #0d6efd;
+  outline-offset: 3px;
+}
 [data-sws-background] img {
   width: 100%;
   height: 100%;
@@ -89,3 +93,4 @@
 [data-sws-button="back"]:hover {
   background-color: #0069d9;
 }
+

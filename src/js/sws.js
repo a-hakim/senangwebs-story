@@ -15,11 +15,13 @@ class SWS {
         this.dialogSpeed = 50; // Default speed in milliseconds
         this._currentTypewriterText = ''; // Store full text for typewriter
         this._currentTypewriterElement = null; // Store element for typewriter
+        this._addedTabIndex = false;
         
         // Bind event handlers for proper cleanup
         this._boundNext = () => this.next();
         this._boundBack = () => this.back();
         this._boundKeydown = (e) => this._handleKeydown(e);
+        this._boundPointerdown = (e) => this._handlePointerdown(e);
 
         if (this.config) {
             this._initFromJSON();
@@ -221,6 +223,11 @@ class SWS {
      * @private
      */
     _setupUI() {
+        if (!this.element.hasAttribute('tabindex')) {
+            this.element.tabIndex = 0;
+            this._addedTabIndex = true;
+        }
+
         this.scenes.forEach((scene, i) => {
             scene.element.style.display = i === 0 ? '' : 'none';
             scene.dialogs.forEach((dialog, j) => {
@@ -242,8 +249,22 @@ class SWS {
         if (nextButton) nextButton.addEventListener('click', this._boundNext);
         if (backButton) backButton.addEventListener('click', this._boundBack);
         
-        // Add keyboard navigation
-        document.addEventListener('keydown', this._boundKeydown);
+        // Keep keyboard navigation scoped to this story instance.
+        this.element.addEventListener('keydown', this._boundKeydown);
+        this.element.addEventListener('pointerdown', this._boundPointerdown);
+    }
+
+    /**
+     * Focuses the story when its non-interactive content is clicked.
+     * @param {PointerEvent} e - The pointer event.
+     * @private
+     */
+    _handlePointerdown(e) {
+        if (e.target.closest('button, a[href], input, textarea, select, [contenteditable="true"]')) {
+            return;
+        }
+
+        this.element.focus({ preventScroll: true });
     }
     
     /**
@@ -252,8 +273,13 @@ class SWS {
      * @private
      */
     _handleKeydown(e) {
-        // Only handle if this story container or its children are focused, or no specific element is focused
         if (!this.element) return;
+
+        const isEditing = e.target.closest('input, textarea, select, [contenteditable="true"]');
+        const usesNativeSpace = e.key === ' ' && e.target.closest('button, a[href]');
+        if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || isEditing || usesNativeSpace) {
+            return;
+        }
         
         if (e.key === 'ArrowRight' || e.key === ' ') {
             e.preventDefault();
@@ -452,7 +478,11 @@ class SWS {
         const backButton = this.element?.querySelector('[data-sws-button="back"]');
         if (nextButton) nextButton.removeEventListener('click', this._boundNext);
         if (backButton) backButton.removeEventListener('click', this._boundBack);
-        document.removeEventListener('keydown', this._boundKeydown);
+        this.element?.removeEventListener('keydown', this._boundKeydown);
+        this.element?.removeEventListener('pointerdown', this._boundPointerdown);
+        if (this._addedTabIndex) {
+            this.element?.removeAttribute('tabindex');
+        }
         
         // Clear internal state
         this.scenes = [];
